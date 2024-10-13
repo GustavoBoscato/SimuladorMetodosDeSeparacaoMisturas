@@ -49,9 +49,9 @@ function App() {
 }
     
   class mistura {
-    mistura : Array<objectMistura>
-    classificacao : string = ''
-
+    mistura : Array<objectMistura>;
+    classificacao : string = '';
+    tipo : string = '';
     get getMistura(){
       return this.mistura;
     }
@@ -81,7 +81,7 @@ function App() {
   }
         //Funções
         
-  const CalculaTipoMistura = (misturaTotal : mistura) =>{
+  const CalculaTipoMisturaSolidaOuLiquida = (misturaTotal : mistura) =>{
     let solidos : number = 0;
     let liquidos : number = 0;
 
@@ -101,7 +101,24 @@ function App() {
 
     } else misturaTotal.classificacao ='S/S';
   }
+  const CalculaHomogeneaOuHeterogenea = (misturaTotal : mistura) =>{
+    if (misturaTotal.classificacao = 'S/S') {
+      return 'Heterogenea';
+      
+    } 
+    let soluvel : number = 0;
+    let naoSoluvel: number = 0;
+    misturaTotal.mistura.forEach((value) => {
+      if (value.soluvelEmAgua == true) {
+        soluvel++        
+      } else naoSoluvel++
+    })
+    if (soluvel > 0 && naoSoluvel == 0) {
+      return 'Homogenea';
+    }
+    
 
+  }
   const agua  = new ComponenteMistura("Água", 997, 100, 'L', true, null, false);
   const etanol = new ComponenteMistura("Etanol",789, 78.37, 'L', true, null, false);
   const oleoCozinha = new ComponenteMistura("Óleo de Cozinha", 800, 200, 'L', false, null, false);
@@ -112,7 +129,7 @@ function App() {
   const brita = new ComponenteMistura("Brita", 1450, null, 'S', false, 50, false);
   const ferro = new ComponenteMistura("Ferro", 7850, null, 'S', false, 30, true);
   const mistureba = new mistura([ferro, brita, areia]);
-  CalculaTipoMistura(mistureba);
+  CalculaTipoMisturaSolidaOuLiquida(mistureba);
   console.log(mistureba.classificacao);
          
   return (
