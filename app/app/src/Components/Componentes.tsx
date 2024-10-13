@@ -36,7 +36,7 @@ const Componentes = () => {
         }
 
     }
-        const agua  = new Component(1000, 100, 'S', true, null, false);
+         const agua  = new Component(1000, 100, 'S', true, null, false);
   return (
     <div>
         <p>{agua.densidade}</p>
