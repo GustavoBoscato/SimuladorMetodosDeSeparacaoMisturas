@@ -9,7 +9,6 @@ function App() {
     type StringOrNull = string | null;
     type BooleanOrNull = boolean | null;
     type EstadoFisico = 'L' | 'S';
-    
 
     class ComponenteMistura {
         densidade;
@@ -36,8 +35,27 @@ function App() {
             this.magnetismo = magnetismo;
 
         }
+      
+        }
+    
+        class mistura {
+          mistura;
+          get getMistura(){
+            return this.mistura;
+          }
+          set setMistura(mistura : Array<object>){
+            this.mistura = mistura
+          }
+          adicionarComponenteMistura(mistura : Array<object>){
+            this.mistura.push(mistura);
+          }
+          constructor(mistura : Array<object>){
+            this.mistura = mistura
+          }
+        }
 
-    }
+
+
          const agua  = new ComponenteMistura(997, 100, 'L', true, null, false);
          const etanol = new ComponenteMistura(789, 78.37, 'L', true, null, false);
          const oleoCozinha = new ComponenteMistura(800, 200, 'L', false, null, false);
@@ -47,6 +65,8 @@ function App() {
          const areia = new ComponenteMistura(1600, null, 'S', false, 20, false);
          const brita = new ComponenteMistura(1450, null, 'S', false, 50, false);
          const ferro = new ComponenteMistura(7850, null, 'S', false, 30, true);
+
+         
   return (
     <div className="App">
       <p><Componentes></Componentes></p>
@@ -54,5 +74,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
