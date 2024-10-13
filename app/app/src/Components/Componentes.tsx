@@ -1,17 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import Componentes from './Components/Componentes';
-import './App.css';
+import React from 'react'
 
-function App() {
+type Props = {}
 
-  type NumberOrNull = number | null;
+const Componentes = () => {
+    type NumberOrNull = number | null;
     type StringOrNull = string | null;
     type BooleanOrNull = boolean | null;
     type EstadoFisico = 'L' | 'S';
     
 
-    class ComponenteMistura {
+    class Component {
         densidade;
         pontoDeEbulicao;
         tamanho;
@@ -38,13 +36,12 @@ function App() {
         }
 
     }
-         const agua  = new ComponenteMistura(1000, 100, 'S', true, null, false);
+        const agua  = new Component(1000, 100, 'S', true, null, false);
   return (
-    <div className="App">
-      <p><Componentes></Componentes></p>
-      <p>{agua.estadoFisico}</p>
+    <div>
+        <p>{agua.densidade}</p>
     </div>
-  );
+  )
 }
 
-export default App;
+export default Componentes
