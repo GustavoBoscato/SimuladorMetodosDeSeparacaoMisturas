@@ -19,7 +19,7 @@ function App() {
         soluvelEmAgua;
         magnetismo;
 
-        constructor(densidade : number, pontoDeEbulicao : number, estadoFisico :
+        constructor(densidade : number, pontoDeEbulicao : NumberOrNull, estadoFisico :
             EstadoFisico, soluvelEmAgua : boolean, tamanho : NumberOrNull,
             magnetismo : boolean){
 
@@ -38,7 +38,14 @@ function App() {
         }
 
     }
-         const agua  = new ComponenteMistura(1000, 100, 'S', true, null, false);
+         const agua  = new ComponenteMistura(997, 100, 'L', true, null, false);
+         const etanol = new ComponenteMistura(789, 78.37, 'L', true, null, false);
+         const oleoCozinha = new ComponenteMistura(800, 200, 'L', false, null, false);
+         const gasolina = new ComponenteMistura(715, 215, 'L', false, null, false);
+         const salCozinha = new ComponenteMistura(2162, null, 'S', true, 10, false);
+         const areia = new ComponenteMistura(1600, null, 'S', false, 15, false);
+         const brita = new ComponenteMistura(1450, null, 'S', false, 50, false);
+         const ferro = new ComponenteMistura(7850, null, 'S', false, 30, true);
   return (
     <div className="App">
       <p><Componentes></Componentes></p>
