@@ -124,6 +124,25 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       return [mistura, misturaSeparada];
     } else return `A destilação simples apenas pode ser utilizada em misturas Homogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
     break;
+  case 'destilação fracionada':
+    if (mistura.tipo === 'L/L' && mistura.classificacao === 'Homogenea') {
+      let menorTemperaturaEbulicao : number = mistura.itens[0].pontoDeEbulicao;
+      let elementoMenorTemperaturaEbulicao : ComponenteMistura = mistura.itens[0];
+
+      mistura.itens.forEach((value) => {
+        if(value.pontoDeEbulicao < menorTemperaturaEbulicao){
+          menorTemperaturaEbulicao = value.pontoDeEbulicao;
+          elementoMenorTemperaturaEbulicao = value;
+        }
+      })      
+
+      mistura.itens.forEach((value, i) =>{
+        mistura.itens.splice(i, 1);
+      })
+      let misturaSeparada = new Mistura([elementoMenorTemperaturaEbulicao]);
+      return[mistura, misturaSeparada]
+    } else return `A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      break;
 }
 
 }
