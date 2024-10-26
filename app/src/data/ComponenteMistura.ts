@@ -15,7 +15,7 @@ export class ComponenteMistura {
   constructor(
     nome: string,
     densidade: number,
-    pontoDeEbulicao: NumberOrNull,
+    pontoDeEbulicao: number,
     estadoFisico: EstadoFisico,
     soluvelEmAgua: boolean,
     tamanho: NumberOrNull,

@@ -13,7 +13,7 @@ function App() {
   
   const mistureba = new Mistura([ferro, brita, areia]);
   const mistureba2 = new Mistura([oleoCozinha, agua, brita]);
-  const mistureba3 = new Mistura([agua, oleoCozinha, etanol]);
+  const mistureba3 = new Mistura([agua, salCozinha]);
   mistureba2.calcularTipo()
   mistureba2.calcularClassificacao();
   mistureba.calcularTipo()
@@ -21,9 +21,9 @@ function App() {
   mistureba3.calcularTipo()
   mistureba3.calcularClassificacao();
 
-  console.log(separarMistura('decantação com funil de bromo', mistureba2));
-  console.log(separarMistura('decantação com funil de bromo', mistureba));
-  console.log(separarMistura('decantação com funil de bromo', mistureba3))
+  console.log(separarMistura('destilação simples', mistureba2));
+  console.log(separarMistura('destilação simples', mistureba));
+  console.log(separarMistura('destilação simples', mistureba3))
          
   return (
     <div className="App">
