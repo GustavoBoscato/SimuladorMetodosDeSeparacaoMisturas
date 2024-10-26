@@ -5,7 +5,7 @@ import { Mistura } from "../data/Mistura";
 
 export type metodoSeparacao = 'centrifugação' | 'decantação' | 'decantação com funil de bromo' | 'filtração' 
 | 'peneiração' | 'separação magnética' | 'dissolução fracionada' | 'destilação simples' | 'destilação fracionada';
-export default function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Array<Mistura> | null | ComponenteMistura | undefined{
+export default function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Array<Mistura> | null | ComponenteMistura | undefined | string{
   switch (metodo) {
     /*
       Explicar em qual situação o método é realizado, e qual o valor que retornará para todos os métodos.
@@ -14,7 +14,37 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       //Condicionando o uso da decantação para as misturas heterogênea e S/L.
 
       if (mistura.tipo == 'S/L' && mistura.classificacao == 'Heterogenea') {
-        let maiorDensidade : number = mistura.itens[0].densidade;
+        let menorDensidade : number = mistura.itens[0].densidade;
+        let elementoMenorDensidade : ComponenteMistura = mistura.itens[0];        
+        
+        mistura.itens.forEach(value => {
+          if (value.densidade < menorDensidade) {
+            menorDensidade = value.densidade;
+            elementoMenorDensidade = value;
+          }
+          
+      })
+      mistura.itens.forEach((value, i) =>{
+        
+        if (value == elementoMenorDensidade) {
+            mistura.itens.splice(i, 1);
+          
+        }
+      })
+      let misturaSeparada = new Mistura([elementoMenorDensidade]);
+
+      misturaSeparada.calcularTipo();
+      misturaSeparada.calcularClassificacao();
+      mistura.calcularTipo()
+      mistura.calcularClassificacao();
+        
+      return [mistura, misturaSeparada];
+       
+    } else return `A decantação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+  break;
+  case 'decantação com funil de bromo':
+    if (mistura.tipo === 'L/L' && mistura.classificacao === 'Heterogenea') {
+      let maiorDensidade : number = mistura.itens[0].densidade;
         let elementoMaiorDensidade : ComponenteMistura = mistura.itens[0];        
         
         mistura.itens.forEach(value => {
@@ -39,8 +69,8 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       mistura.calcularClassificacao();
         
       return [mistura, misturaSeparada];
-       
-  }
+    } else return `A decantação com funil de bromo apenas pode ser utilizada em misturas Heterogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+  break;
 }
 }
 
