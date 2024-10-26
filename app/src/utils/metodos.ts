@@ -18,19 +18,33 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
         let elementoMaiorDensidade : ComponenteMistura = mistura.itens[0];        
         
         mistura.itens.forEach(value => {
-          if (value.densidade > maiorDensidade) {
+          if (value.densidade < maiorDensidade) {
             maiorDensidade = value.densidade;
             elementoMaiorDensidade = value;
           }
+          
       })
-       
-        return elementoMaiorDensidade; 
+      mistura.itens.forEach((value, i) =>{
+        
+        if (value == elementoMaiorDensidade) {
+            mistura.itens.splice(i, 1);
+          
+        }
+      })
+      let misturaSeparada = new Mistura([elementoMaiorDensidade]);
+
+      misturaSeparada.calcularTipo();
+      misturaSeparada.calcularClassificacao();
+      mistura.calcularTipo()
+      mistura.calcularClassificacao();
+        
+      return [mistura, misturaSeparada];
        
   }
 }
 }
-const mistureba = new Mistura([agua, etanol, gasolina, oleoCozinha]);
-console.log(separarMistura('decantação', mistureba));
-console.log(separarMistura('decantação', mistureba));
+
+
+
 
 
