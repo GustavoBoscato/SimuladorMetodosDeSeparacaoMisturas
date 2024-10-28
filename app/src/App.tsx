@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Mistura } from './data/Mistura';
-import {acucar, agua, areia, brita, etanol, ferro, gasolina, oleoCozinha, salCozinha } from './data/dataComponentes';
+import {acucar, agua, areia, brita, etanol, ferro, gasolina, oleoCozinha, salCozinha} from './data/dataComponentes';
 import metodos from './utils/metodos';
 import { listaComponentes } from './data/dataComponentes';
 
@@ -12,8 +12,8 @@ import separarMistura from './utils/metodos';
 function App() {
   
   const mistureba = new Mistura([ferro, brita, areia]);
-  const mistureba2 = new Mistura([oleoCozinha, agua, brita]);
-  const mistureba3 = new Mistura([agua, etanol]);
+  const mistureba2 = new Mistura([oleoCozinha, gasolina, brita]);
+  const mistureba3 = new Mistura([agua, etanol, oleoCozinha, gasolina, brita, acucar, salCozinha]);
   mistureba2.calcularTipo()
   mistureba2.calcularClassificacao();
   mistureba.calcularTipo()
@@ -21,9 +21,9 @@ function App() {
   mistureba3.calcularTipo()
   mistureba3.calcularClassificacao();
 
-  console.log(separarMistura('destilação fracionada', mistureba2));
-  console.log(separarMistura('destilação fracionada', mistureba));
-  console.log(separarMistura('destilação fracionada', mistureba3))
+  console.log(separarMistura('filtração', mistureba2));
+  console.log(separarMistura('filtração', mistureba));
+  console.log(separarMistura('filtração', mistureba3))
          
   return (
     <div className="App">

@@ -101,7 +101,9 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       
     return [mistura, misturaSeparada];
      
-  } else return `A centrifugação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+  } 
+  else 
+  return `A centrifugação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
   case 'destilação simples':
     if (mistura.tipo === 'S/L' && mistura.classificacao === 'Homogenea') {
 
@@ -142,6 +144,27 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       let misturaSeparada = new Mistura([elementoMenorTemperaturaEbulicao]);
       return[mistura, misturaSeparada]
     } else return `A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      break;
+  case  'filtração':
+    if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/L') {
+
+      const liquidos : Array<ComponenteMistura> = mistura.itens.filter((value) =>  value.estadoFisico === 'L')
+
+      const solidosDissolvidos : Array<ComponenteMistura> = mistura.itens.filter((value) => value.soluvelEmAgua === liquidos[0].soluvelEmAgua)
+          
+      if (liquidos.every((value) => value.soluvelEmAgua === true || value.soluvelEmAgua === false)) {
+          
+        const solidosNaoDissolvidos : Array<ComponenteMistura> = mistura.itens.filter((value) => {
+        return value.soluvelEmAgua !== liquidos[0].soluvelEmAgua && value.estadoFisico === 'S';
+    }) 
+            
+      const misturaLiquidaSolidosDissolvidos = new Mistura(liquidos.concat(solidosDissolvidos))
+      const misturaSolidosNaoDissolvidos = new Mistura(solidosNaoDissolvidos)
+
+      return [misturaLiquidaSolidosDissolvidos, misturaSolidosNaoDissolvidos]
+            
+          }
+        } else return `A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo} ou não poderá conter líquidos de diferentes polaridades.`
       break;
 }
 
