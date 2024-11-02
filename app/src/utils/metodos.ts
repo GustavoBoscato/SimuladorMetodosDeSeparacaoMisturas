@@ -14,98 +14,76 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       //Condicionando o uso da decantação para as misturas heterogênea e S/L.
 
       if (mistura.tipo == 'S/L' && mistura.classificacao == 'Heterogenea') {
-        let menorDensidade : number = mistura.itens[0].densidade;
-        let elementoMenorDensidade : ComponenteMistura = mistura.itens[0];        
-        //Seleciona o elemento de menor densidade.
-        mistura.itens.forEach(value => {
-          if (value.densidade < menorDensidade) {
-            menorDensidade = value.densidade;
-            elementoMenorDensidade = value;
-          }
-          
-      })
-      //Remove o elemento de menor densidade.
-      mistura.itens.forEach((value, i) =>{
-        
-        if (value == elementoMenorDensidade) {
-            mistura.itens.splice(i, 1);
-          
-        }
-      })
-      //Cria uma nova mistura com o elemento menos denso.
-      let misturaSeparada = new Mistura([elementoMenorDensidade]);
 
-      misturaSeparada.calcularTipo();
-      misturaSeparada.calcularClassificacao();
-      mistura.calcularTipo()
-      mistura.calcularClassificacao();
-        
-      return [mistura, misturaSeparada];
+        const liquidos : Array<ComponenteMistura> = mistura.itens.filter((value) =>  value.estadoFisico === 'L')
+        if (liquidos.every((value) => value.soluvelEmAgua === liquidos[0].soluvelEmAgua) === true) {
+          let soma : number = 0;
+          const mediaDensidadeLiquidosVetor : number[] = liquidos.map((value) => soma = value.densidade)
+          const mediaDensidade : number = mediaDensidadeLiquidosVetor.reduce((n1, n2) => n1 + n2)/mediaDensidadeLiquidosVetor.length;
+          const solidosNaoDissolvidos : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua !== liquidos[0].soluvelEmAgua && value.estadoFisico === 'S');
+          const solidosDissolvidos : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === liquidos[0].soluvelEmAgua && value.estadoFisico === 'S');
+          const solidosSeparados : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade > mediaDensidade)
+          const solidosMenorDensidade : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade < mediaDensidade)
+          //Adiciona os elementos líquidos, sólidos dissolvidos, e sólidos não dissolvidos que possuem densidade menor que a média.
+          const ComponentesRestantes : ComponenteMistura[] = liquidos.concat(solidosDissolvidos, solidosMenorDensidade)
+          const Mistura1 = new Mistura(ComponentesRestantes);
+          const MisturaSeparada = new Mistura(solidosSeparados);
+          return [Mistura1, MisturaSeparada];
+        } else {
+          const liquidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
+          const liquidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+          const solidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
+          const solidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+          const componentesPolares = liquidosSoluveisEmAgua.concat(solidosSoluveisEmAgua);
+          const componentesAPolares = liquidosNaoSoluveisEmAgua.concat(solidosNaoSoluveisEmAgua);
+          const misturaPolar = new Mistura(componentesPolares);
+          const misturaAPolar = new Mistura(componentesAPolares);
+          return[misturaPolar, misturaAPolar];
+        }
+
        //Retorna uma mensagem de erro especificando o que o usuário fez de errado.
     } else return `A decantação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
   break;
   case 'decantação com funil de bromo':
     //Condicionando o uso da decantação com funil de bromo para as misturas heterogênea e L/L.
     if (mistura.tipo === 'L/L' && mistura.classificacao === 'Heterogenea') {
-      let maiorDensidade : number = mistura.itens[0].densidade;
-        let elementoMaiorDensidade : ComponenteMistura = mistura.itens[0];        
-        //Busca o elemento de maior densidade
-        mistura.itens.forEach(value => {
-          if (value.densidade < maiorDensidade) {
-            maiorDensidade = value.densidade;
-            elementoMaiorDensidade = value;
-          }
-          
-      })
-      //Remove da mistura o elemento de maior densidade.
-      mistura.itens.forEach((value, i) =>{
-        
-        if (value == elementoMaiorDensidade) {
-            mistura.itens.splice(i, 1);
-          
-        }
-      })
-      //Cria uma nova mistura com o elemento de maior densidade.
-      let misturaSeparada = new Mistura([elementoMaiorDensidade]);
+      const liquidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
+      const liquidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+      const misturaPolar = new Mistura(liquidosSoluveisEmAgua);
+          const misturaAPolar = new Mistura(liquidosNaoSoluveisEmAgua);
+          return[misturaPolar, misturaAPolar];
 
-      misturaSeparada.calcularTipo();
-      misturaSeparada.calcularClassificacao();
-      mistura.calcularTipo()
-      mistura.calcularClassificacao();
-        
-      return [mistura, misturaSeparada];
+
     } else return `A decantação com funil de bromo apenas pode ser utilizada em misturas Heterogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
   break;
   case 'centrifugação':
      //Condicionando o uso da centrifugação para as misturas heterogênea e S/L.
     if (mistura.tipo == 'S/L' && mistura.classificacao == 'Heterogenea') {
-      let menorDensidade : number = mistura.itens[0].densidade;
-      let elementoMenorDensidade : ComponenteMistura = mistura.itens[0];        
-       //Seleciona o elemento de menor densidade.
-      mistura.itens.forEach(value => {
-        if (value.densidade < menorDensidade) {
-          menorDensidade = value.densidade;
-          elementoMenorDensidade = value;
+      const liquidos : Array<ComponenteMistura> = mistura.itens.filter((value) =>  value.estadoFisico === 'L')
+        if (liquidos.every((value) => value.soluvelEmAgua === liquidos[0].soluvelEmAgua) === true) {
+          let soma : number = 0;
+          const mediaDensidadeLiquidosVetor : number[] = liquidos.map((value) => soma = value.densidade)
+          const mediaDensidade : number = mediaDensidadeLiquidosVetor.reduce((n1, n2) => n1 + n2)/mediaDensidadeLiquidosVetor.length;
+          const solidosNaoDissolvidos : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua !== liquidos[0].soluvelEmAgua && value.estadoFisico === 'S');
+          const solidosDissolvidos : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === liquidos[0].soluvelEmAgua && value.estadoFisico === 'S');
+          const solidosSeparados : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade > mediaDensidade)
+          const solidosMenorDensidade : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade < mediaDensidade)
+          //Adiciona os elementos líquidos, sólidos dissolvidos, e sólidos não dissolvidos que possuem densidade menor que a média.
+          const ComponentesRestantes : ComponenteMistura[] = liquidos.concat(solidosDissolvidos, solidosMenorDensidade)
+          const Mistura1 = new Mistura(ComponentesRestantes);
+          const MisturaSeparada = new Mistura(solidosSeparados);
+          return [Mistura1, MisturaSeparada];
+        } else {
+          const liquidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
+          const liquidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+          const solidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
+          const solidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+          const componentesPolares = liquidosSoluveisEmAgua.concat(solidosSoluveisEmAgua);
+          const componentesAPolares = liquidosNaoSoluveisEmAgua.concat(solidosNaoSoluveisEmAgua);
+          const misturaPolar = new Mistura(componentesPolares);
+          const misturaAPolar = new Mistura(componentesAPolares);
+          return[misturaPolar, misturaAPolar];
         }
-        
-    })
-    //Remove o elemento de menor densidade da mistura..
-    mistura.itens.forEach((value, i) =>{
-      
-      if (value == elementoMenorDensidade) {
-          mistura.itens.splice(i, 1);
-        
-      }
-    })
-    //Cria uma nova mistura com o elemento de menor densidade como componente
-    let misturaSeparada = new Mistura([elementoMenorDensidade]);
-
-    misturaSeparada.calcularTipo();
-    misturaSeparada.calcularClassificacao();
-    mistura.calcularTipo()
-    mistura.calcularClassificacao();
-      
-    return [mistura, misturaSeparada];
      
   } 
   else 
@@ -150,7 +128,10 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       })      
       //Remove da mistura o elemento com menor temperatura de ebulição.
       mistura.itens.forEach((value, i) =>{
-        mistura.itens.splice(i, 1);
+        if (value === elementoMenorTemperaturaEbulicao) {
+          mistura.itens.splice(i, 1);  
+        }
+        
       })
       //Cria uma nova mistura com o elemento de menor temperatura de ebulição como componente.
       let misturaSeparada = new Mistura([elementoMenorTemperaturaEbulicao]);

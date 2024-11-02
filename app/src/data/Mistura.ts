@@ -56,24 +56,10 @@ export class Mistura {
       console.log("Componente ja existe na mistura");
     }
 
-    /*
-    let i = 0;
-    this._itens.forEach((value) => {
-      if (value == mistura) {
-        i++;
-      }
-    });
-    //Impede de adicionar um componente que já esteja presente na mistura.
-    if (i == 0) {
-      this._itens.push(mistura);
-    }*/
+    
   }
 
-  /*
-  constructor(mistura: Array<ComponenteMistura>) {
-    this._itens = mistura;
-  }
-  */
+
   constructor(componentes: Array<ComponenteMistura>) {
     this.itens = componentes;
   }

@@ -12,18 +12,12 @@ import separarMistura from './utils/metodos';
 function App() {
   
   const mistureba = new Mistura([ferro, brita, areia]);
-  const mistureba2 = new Mistura([oleoCozinha, gasolina, brita]);
-  const mistureba3 = new Mistura([agua, etanol, oleoCozinha, gasolina, brita, acucar, salCozinha]);
-  mistureba2.calcularTipo()
+  const mistureba2 = new Mistura([oleoCozinha, agua, gasolina, etanol]);
+  const mistureba3 = new Mistura([agua, etanol]);
+  const mistura4 = new Mistura([agua, etanol])
+  mistureba2.calcularTipo();
   mistureba2.calcularClassificacao();
-  mistureba.calcularTipo()
-  mistureba.calcularClassificacao();
-  mistureba3.calcularTipo()
-  mistureba3.calcularClassificacao();
-
-  console.log(separarMistura('filtração', mistureba2));
-  console.log(separarMistura('filtração', mistureba));
-  console.log(separarMistura('filtração', mistureba3))
+  console.log(separarMistura('decantação com funil de bromo', mistureba2) );
          
   return (
     <div className="App">
