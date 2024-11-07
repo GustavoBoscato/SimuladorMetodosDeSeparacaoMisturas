@@ -14,10 +14,10 @@ function App() {
   const mistureba = new Mistura([ferro, brita, areia, salCozinha, acucar]);
   const mistureba2 = new Mistura([oleoCozinha, agua, gasolina, etanol]);
   const mistureba3 = new Mistura([agua, etanol]);
-  const mistura4 = new Mistura([agua, etanol])
+  const mistura4 = new Mistura([agua, etanol, gasolina, acucar, brita, ferro])
   mistureba2.calcularTipo();
   mistureba2.calcularClassificacao();
-  console.log(separarMistura('dissolução fracionada', mistureba) );
+  console.log(separarMistura('filtração', mistura4) );
          
   return (
     <div className="App">

@@ -43,7 +43,7 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
 
        //Retorna uma mensagem de erro especificando o que o usuário fez de errado.
     } else return `A decantação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
-  break;
+    break;
   case 'decantação com funil de bromo':
     //Condicionando o uso da decantação com funil de bromo para as misturas heterogênea e L/L.
     if (mistura.tipo === 'L/L' && mistura.classificacao === 'Heterogenea') {
@@ -55,7 +55,7 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
 
 
     } else return `A decantação com funil de bromo apenas pode ser utilizada em misturas Heterogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
-  break;
+    break;
   case 'centrifugação':
      //Condicionando o uso da centrifugação para as misturas heterogênea e S/L.
     if (mistura.tipo == 'S/L' && mistura.classificacao == 'Heterogenea') {
@@ -137,7 +137,7 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
       return[mistura, misturaSeparada]
       // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja homogênea L/L
     } else return `A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
-      break;
+     break;
   case  'filtração':
     //Condicionando o uso da filtração para as misturas heterogênea e S/L.
     if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/L') {
@@ -162,7 +162,7 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
             
           } // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja heterogênea S/L
         } else return `A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo} ou não poderá conter líquidos de diferentes polaridades.`
-        break;
+      break;
     case 'peneiração':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
         let aux : Array<ComponenteMistura> = mistura.itens
@@ -178,7 +178,7 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
         const MisturaRestante : Mistura = new Mistura(aux.filter((value) => value !== maiorComponente))
         return [novaMistura, MisturaRestante]
       } else return `A peneiração apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
-     break;
+      break;
      case 'separação magnética':
       const contemFerro = mistura.itens.some((value) => value.nome === 'Ferro')
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S' && contemFerro === true){
@@ -188,8 +188,16 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
         const misturaFerro : Mistura = new Mistura(componenteFerro);
         return[misturaRestante, misturaFerro];
       } else return `A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S e deve conter ferro em sua composição, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
-     break;
-     
+      break;
+     case 'dissolução fracionada':
+      if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
+        const solidosSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === true);
+        const solidosNaoSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+        const misturaSoluvel : Mistura = new Mistura(solidosSoluveisEmAgua)
+        const misturaNaoSoluvel : Mistura = new Mistura(solidosNaoSoluveisEmAgua)
+        return[misturaSoluvel, misturaNaoSoluvel];
+      } else return `A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      break;
 }
 
 }
