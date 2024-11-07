@@ -86,9 +86,8 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
         }
      
   } 
-  else 
-  // Mensagem de erro caso o usuário tente fazer uma separação diferente de heterogênea ou L/L
-  return `A centrifugação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+  else return `A centrifugação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+  break;
   case 'destilação simples':
     if (mistura.tipo === 'S/L' && mistura.classificacao === 'Homogenea') {
       //Condicionando o uso da destilação simples para as misturas homogênea e S/L.
@@ -163,7 +162,24 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
             
           } // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja heterogênea S/L
         } else return `A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo} ou não poderá conter líquidos de diferentes polaridades.`
-      break;
+        break;
+    case 'peneiração':
+      if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
+        let aux : Array<ComponenteMistura> = mistura.itens
+        let maiorTamanho : number = mistura.itens[0].tamanho;
+        let maiorComponente : ComponenteMistura = aux[0]
+        aux.forEach((value) => {
+          if (value.tamanho > maiorTamanho) {
+           maiorComponente = value
+          }
+          
+        })
+        const novaMistura : Mistura = new Mistura([maiorComponente])
+        const MisturaRestante : Mistura = new Mistura(aux.filter((value) => value !== maiorComponente))
+        return [novaMistura, MisturaRestante]
+      } else return `A peneiração apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+     break;
+     
 }
 
 }

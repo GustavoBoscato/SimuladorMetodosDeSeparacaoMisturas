@@ -17,7 +17,7 @@ function App() {
   const mistura4 = new Mistura([agua, etanol])
   mistureba2.calcularTipo();
   mistureba2.calcularClassificacao();
-  console.log(separarMistura('decantação com funil de bromo', mistureba2) );
+  console.log(separarMistura('peneiração', mistureba) );
          
   return (
     <div className="App">

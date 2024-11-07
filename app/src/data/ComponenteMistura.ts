@@ -18,7 +18,7 @@ export class ComponenteMistura {
     pontoDeEbulicao: number,
     estadoFisico: EstadoFisico,
     soluvelEmAgua: boolean,
-    tamanho: NumberOrNull,
+    tamanho: number,
     magnetismo: boolean
   ) {
     this.nome = nome;
