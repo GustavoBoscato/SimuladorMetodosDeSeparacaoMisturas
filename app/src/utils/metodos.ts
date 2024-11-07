@@ -179,6 +179,16 @@ export default function separarMistura(metodo: metodoSeparacao, mistura : Mistur
         return [novaMistura, MisturaRestante]
       } else return `A peneiração apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
      break;
+     case 'separação magnética':
+      const contemFerro = mistura.itens.some((value) => value.nome === 'Ferro')
+      if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S' && contemFerro === true){
+        const componenteFerro : ComponenteMistura[] = mistura.itens.filter((value) => value.nome === 'Ferro')
+        const componentesSemFerro : ComponenteMistura[] = mistura.itens.filter((value) => value.nome !== 'Ferro')
+        const misturaRestante : Mistura = new Mistura(componentesSemFerro);
+        const misturaFerro : Mistura = new Mistura(componenteFerro);
+        return[misturaRestante, misturaFerro];
+      } else return `A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S e deve conter ferro em sua composição, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+     break;
      
 }
 

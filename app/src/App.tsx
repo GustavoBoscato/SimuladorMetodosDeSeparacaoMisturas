@@ -11,13 +11,13 @@ import separarMistura from './utils/metodos';
 
 function App() {
   
-  const mistureba = new Mistura([ferro, brita, areia]);
+  const mistureba = new Mistura([ferro, brita, areia, salCozinha, acucar]);
   const mistureba2 = new Mistura([oleoCozinha, agua, gasolina, etanol]);
   const mistureba3 = new Mistura([agua, etanol]);
   const mistura4 = new Mistura([agua, etanol])
   mistureba2.calcularTipo();
   mistureba2.calcularClassificacao();
-  console.log(separarMistura('peneiração', mistureba) );
+  console.log(separarMistura('dissolução fracionada', mistureba) );
          
   return (
     <div className="App">
