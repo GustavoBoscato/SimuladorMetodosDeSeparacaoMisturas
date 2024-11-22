@@ -12,7 +12,7 @@ function App() {
   const mistureba2 = new Mistura([oleoCozinha, gasolina, acucar]);
   const mistureba3 = new Mistura([agua, salCozinha]);
   const mistureba4 = new Mistura([agua, oleoCozinha, areia]);
-  const mistureba5 = new Mistura([agua, areia, ferro, salCozinha]);
+  const mistureba5 = new Mistura([ferro, areia, acucar, brita]);
          
   return (
     <div className="App">

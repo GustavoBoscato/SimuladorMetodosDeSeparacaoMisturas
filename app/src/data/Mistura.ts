@@ -38,8 +38,7 @@ export class Mistura {
   }
 
   calcularClassificacao() : void {
-    if (this._tipo == 'S/S' || 
-        this._itens.some((componente) => componente.soluvelEmAgua == false)) {
+    if (this._tipo == 'S/S' || this._itens.some((componente) => componente.soluvelEmAgua == false && this._itens.some((componente) => componente.soluvelEmAgua == true))) {
       this._classificacao = 'Heterogenea';
     } else {
       this._classificacao = 'Homogenea';

@@ -4,7 +4,6 @@ import './style.css';
 
 import { Mistura } from "../../data/Mistura";
 import MisturaPainel from '../../Components/MisturaPainel';
-
 import { metodoSeparacao, separarMistura } from '../../utils/metodos';
 
 export default function Home({misturaInicial}: {misturaInicial : Mistura}) {
