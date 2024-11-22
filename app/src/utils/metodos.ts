@@ -204,13 +204,14 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       } else return `A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S e deve conter ferro em sua composição, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
       break;
      case 'dissolução fracionada':
-      if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
+      if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S' && mistura.itens.some((componente) => componente.soluvelEmAgua === true ) &&
+       mistura.itens.some((componente) => componente.soluvelEmAgua === false || componente.soluvelEmAgua === null )){
         const solidosSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === true);
         const solidosNaoSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === false || value.soluvelEmAgua === null);
         const misturaSoluvel : Mistura = new Mistura(solidosSoluveisEmAgua)
         const misturaNaoSoluvel : Mistura = new Mistura(solidosNaoSoluveisEmAgua)
         return[misturaSoluvel, misturaNaoSoluvel];
-      } else return `A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      } else return `A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}. Bem como não é possível separar sólidos de mesma polaridade.`
       break;
 }
 
