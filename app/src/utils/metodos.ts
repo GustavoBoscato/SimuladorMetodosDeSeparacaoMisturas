@@ -180,16 +180,16 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
     case 'peneiração':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
         let aux : Array<ComponenteMistura> = mistura.itens
-        let maiorTamanho : number = mistura.itens[0].tamanho;
-        let maiorComponente : ComponenteMistura = aux[0]
+        let menorTamanho : number = mistura.itens[0].tamanho;
+        let menorComponente : ComponenteMistura = aux[0]
         aux.forEach((value) => {
-          if (value.tamanho > maiorTamanho) {
-           maiorComponente = value
+          if (value.tamanho < menorTamanho) {
+           menorComponente = value
           }
           
         })
-        const novaMistura : Mistura = new Mistura([maiorComponente])
-        const MisturaRestante : Mistura = new Mistura(aux.filter((value) => value !== maiorComponente))
+        const novaMistura : Mistura = new Mistura([menorComponente])
+        const MisturaRestante : Mistura = new Mistura(aux.filter((value) => value !== menorComponente))
         return [novaMistura, MisturaRestante]
       } else return `A peneiração apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
       break;
@@ -206,7 +206,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
      case 'dissolução fracionada':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
         const solidosSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === true);
-        const solidosNaoSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+        const solidosNaoSoluveisEmAgua : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === false || value.soluvelEmAgua === null);
         const misturaSoluvel : Mistura = new Mistura(solidosSoluveisEmAgua)
         const misturaNaoSoluvel : Mistura = new Mistura(solidosNaoSoluveisEmAgua)
         return[misturaSoluvel, misturaNaoSoluvel];
