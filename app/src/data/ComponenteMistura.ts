@@ -17,7 +17,7 @@ export class ComponenteMistura {
     densidade: number,
     pontoDeEbulicao: number,
     estadoFisico: EstadoFisico,
-    soluvelEmAgua: boolean,
+    soluvelEmAgua: BooleanOrNull,
     tamanho: number,
     magnetismo: boolean
   ) {

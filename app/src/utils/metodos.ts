@@ -3,9 +3,23 @@ import { acucar, agua, areia, brita, etanol, ferro, gasolina, oleoCozinha, salCo
 import { Mistura } from "../data/Mistura";
 
 
-export type metodoSeparacao = 'centrifugação' | 'decantação' | 'decantação com funil de bromo' | 'filtração' 
-| 'peneiração' | 'separação magnética' | 'dissolução fracionada' | 'destilação simples' | 'destilação fracionada';
-export default function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Array<Mistura> | null | ComponenteMistura | undefined | string{
+// Declaração dos valores como uma constante readonly array
+export const metodoSeparacaoArray = [
+  'centrifugação',
+  'decantação',
+  'decantação com funil de bromo',
+  'filtração',
+  'peneiração',
+  'separação magnética',
+  'dissolução fracionada',
+  'destilação simples',
+  'destilação fracionada'
+] as const;
+
+// Define o tipo com base nos valores do array
+export type metodoSeparacao = typeof metodoSeparacaoArray[number];
+
+export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Array<Mistura> | null | ComponenteMistura | undefined | string{
   switch (metodo) {
     /*
       Explicar em qual situação o método é realizado, e qual o valor que retornará para todos os métodos.
