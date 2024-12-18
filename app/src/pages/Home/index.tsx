@@ -1,37 +1,57 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import './style.css';
+import "./style.css";
 
 import { Mistura } from "../../data/Mistura";
-import MisturaPainel from '../../Components/MisturaPainel';
-import { metodoSeparacao, separarMistura } from '../../utils/metodos';
+import MisturaPainel from "../../Components/MisturaPainel";
+import { metodoSeparacao, separarMistura } from "../../utils/metodos";
 
-export default function Home({misturaInicial}: {misturaInicial : Mistura}) {
-    const [misturas, setMisturas] = useState<Mistura[]>([misturaInicial])
+export default function Home({ opcoesMisturas }: {opcoesMisturas: Mistura[]}) {
 
-    function separador(indMistura: number, metodo: metodoSeparacao){
-        //const resultado = separarMistura(metodo, misturas[indMistura]);
+  const [misturas, setMisturas] = useState<Mistura[]>([]);
 
-        const resposta = separarMistura(metodo, misturas[indMistura]);
+  function separador(indMistura: number, metodo: metodoSeparacao) {
+    //const resultado = separarMistura(metodo, misturas[indMistura]);
 
-        //Avisar para o gustado elhorar a implementação do separarMistura 
-        //disparando um erro se não for possível fazer a separação
-        if (Array.isArray(resposta)){
-            const copiaMisturas = [...misturas];
-            copiaMisturas.splice(indMistura, 1, ...resposta);
-            //console.log(copiaMisturas);
-            setMisturas(copiaMisturas);
-        }
+    const resposta = separarMistura(metodo, misturas[indMistura]);
 
-        if (typeof resposta === 'string'){
-            alert(resposta);
-        }
-
+    //Avisar para o gustado elhorar a implementação do separarMistura
+    //disparando um erro se não for possível fazer a separação
+    if (Array.isArray(resposta)) {
+      const copiaMisturas = [...misturas];
+      copiaMisturas.splice(indMistura, 1, ...resposta);
+      //console.log(copiaMisturas);
+      setMisturas(copiaMisturas);
     }
 
-    return (
-        <div className='container'>
-            {misturas.map((m, ind) => <MisturaPainel mistura={m} ind={ind} separador={separador} />)}
-        </div>
-    )
+    if (typeof resposta === "string") {
+      alert(resposta);
+    }
+  }
+
+  return (
+    <div className="container">
+      <div className="containerEscolhaMisturaInicial">
+        <h2>Escolher Mistura Inicial</h2>
+        <select onChange={(e) => {
+                if (e.target.value === "") 
+                    setMisturas([]);
+                else
+                    setMisturas([opcoesMisturas[parseInt(e.target.value)]]);
+            }
+        }>
+          <option value="">Selecione a mistura inicial para teste</option>
+          {opcoesMisturas.map((mistura, ind) => (
+            <option key={ind} value={ind}>{mistura.itens.map((item) => item.nome).join(', ')}</option>
+          ))}
+        </select>
+      </div>
+      <hr/>
+      <div className="containerSeparadorMistura">
+        {misturas.map((m, ind) => (
+          <MisturaPainel mistura={m} ind={ind} separador={separador} />
+        ))}
+      </div>
+    </div>
+  );
 }

@@ -8,15 +8,18 @@ import Home from './pages/Home';
 
 function App() {
   
-  const mistureba = new Mistura([ferro, brita, areia]);
-  const mistureba2 = new Mistura([oleoCozinha, gasolina, acucar]);
-  const mistureba3 = new Mistura([agua, salCozinha]);
-  const mistureba4 = new Mistura([agua, oleoCozinha, areia]);
-  const mistureba5 = new Mistura([ferro, areia, acucar, salCozinha]);
-         
+  const mistura1 = new Mistura([agua, areia]);
+  const mistura2 = new Mistura([agua, oleoCozinha]);
+  const mistura3 = new Mistura([agua, salCozinha]);
+  const mistura4 = new Mistura([agua, etanol, salCozinha]);
+  const mistura5 = new Mistura([areia, ferro, brita]);
+  const mistura6 = new Mistura([agua, oleoCozinha, etanol]);
+  const mistura7 = new Mistura([areia, salCozinha]);
+
+  const listaMisturas = [mistura1, mistura2, mistura3, mistura4, mistura5, mistura6, mistura7];         
   return (
     <div className="App">
-      <Home misturaInicial={mistureba5} />
+      <Home opcoesMisturas={listaMisturas} />
     </div>
   );
 }
