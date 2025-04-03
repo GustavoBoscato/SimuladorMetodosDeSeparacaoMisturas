@@ -1,0 +1,32 @@
+div.telaInicial{
+    display: flex;
+    height: 500px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+    
+}
+div.textoInicial{
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+}
+div.imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h2Inicial{
+margin-bottom: 40px;
+}
+.pInicial
+{
+    margin-bottom: 10px;
+}
+img.imgInicial{
+    width: 800px;
+    height: 400px;
+}

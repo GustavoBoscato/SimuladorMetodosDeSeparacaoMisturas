@@ -1,0 +1,14 @@
+.opcaoMistura {
+    border: 2px solid rgb(233, 222, 222);
+    border-radius: 5px;
+    width: 30%;
+    text-indent: 30px;
+    text-align: left;
+}
+
+.opcaoMistura p{
+    margin: 7px 0;
+}
+.opcaoMistura img{
+    margin: 7px 0;
+}
