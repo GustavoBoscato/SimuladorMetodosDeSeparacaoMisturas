@@ -5,7 +5,13 @@ import {acucar, agua, areia, brita, etanol, ferro, gasolina, oleoCozinha, salCoz
 import { listaComponentes } from './data/dataComponentes';
 import './App.css';
 import Home from './pages/Home';
-
+import Navbar from './Components/Principal/Navbar';
+import TelaInicial from './Components/Principal/TelaInicial';
+import SelectComponente from './Components/Principal/SelectComponente';
+import { Link, Route, BrowserRouter, Routes} from 'react-router-dom';
+import Simular from './pages/Home/Simular';
+import ListaComponente from './pages/Home/ListaComponente';
+import Iniciar from './pages/Home/Iniciar';
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -19,7 +25,17 @@ function App() {
   const listaMisturas = [mistura1, mistura2, mistura3, mistura4, mistura5, mistura6, mistura7];         
   return (
     <div className="App">
-      <Home opcoesMisturas={listaMisturas} />
+      <div className="App">
+        <BrowserRouter>
+      <Routes>
+        <Route path="/" element={< Iniciar/>} />
+        <Route path="/simular" element={< Simular/>} />
+        <Route path="/listaComponente" element={<ListaComponente/>} />
+      </Routes>
+      <Navbar/>
+    </BrowserRouter>
+    
+    </div>
     </div>
   );
 }
