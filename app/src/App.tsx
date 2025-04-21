@@ -12,6 +12,7 @@ import { Link, Route, BrowserRouter, Routes} from 'react-router-dom';
 import Simular from './pages/Home/Simular';
 import ListaComponente from './pages/Home/ListaComponente';
 import Iniciar from './pages/Home/Iniciar';
+import Modos from './Components/Principal/Modos';
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={< Iniciar/>} />
         <Route path="/simular" element={< Simular/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
+        <Route path="/listaComponente" element={<Modos titulo='Modo Fácil' titulo2='Modo Difícil' texto='Iniciantes' texto2='Peritos'/>} />
       </Routes>
       
     </BrowserRouter>
