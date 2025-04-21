@@ -9,6 +9,8 @@ interface ModosProps {
   const Modos: React.FC<ModosProps> = ({h3,texto,img}) => {
   return (
     <section className='Modos'>
+        <h3>Modos</h3>
+        <p>Selecione o modo desejado.</p>
         <div className="img">
         {img && <img src={img} className='imgMistura'/>}
         </div>

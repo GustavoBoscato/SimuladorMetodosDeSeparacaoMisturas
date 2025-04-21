@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav>
       <ul className='ulNavbar'>
-        <li><img src='./logoNavbar.png'/></li>
+        <li><img src='././././img/logoNavbar.png' id='logoNavbar'/></li>
         <li id='navSimulador'>Simulador Dos Métodos de Separação</li>
         <li ><Link className='link' to='/'>Iniciar</Link></li>
         <li><Link className='link' to='/simular'>Simular</Link></li>

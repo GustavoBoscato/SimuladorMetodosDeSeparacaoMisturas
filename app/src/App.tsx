@@ -27,14 +27,15 @@ function App() {
     <div className="App">
       <div className="App">
         <BrowserRouter>
+        <Navbar/>
       <Routes>
         <Route path="/" element={< Iniciar/>} />
         <Route path="/simular" element={< Simular/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
       </Routes>
-      <Navbar/>
+      
     </BrowserRouter>
-    
+      
     </div>
     </div>
   );
