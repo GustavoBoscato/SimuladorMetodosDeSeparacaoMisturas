@@ -13,6 +13,7 @@ import Simular from './pages/Home/Simular';
 import ListaComponente from './pages/Home/ListaComponente';
 import Iniciar from './pages/Home/Iniciar';
 import Modos from './Components/Principal/Modos';
+import LaboratorioOpção from './Components/Principal/LaboratorioOpção';
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/simular" element={< Simular/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
         <Route path="/listaComponente" element={<Modos titulo='Modo Fácil' titulo2='Modo Difícil' texto='Iniciantes' texto2='Peritos'/>} />
+        <Route path="/laboratorioOpcao" element={<LaboratorioOpção/>} />
       </Routes>
       
     </BrowserRouter>

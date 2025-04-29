@@ -1,0 +1,31 @@
+.adicionarOuRemover{
+    width: 100%;
+    display: flex;
+}
+.conteinerLaboratorioOpcao{
+    width: 100%;
+}
+.conteinerGeral{
+    display: flex;
+    width: 100%;
+   
+    
+}
+
+.resetarMisturaOuVoltar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.conjuntoBotaoSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-top: 50px;
+}
+#voltarLaboratorioOpcao{
+    width: 20%;
+}

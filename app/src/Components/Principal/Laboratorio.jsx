@@ -7,6 +7,7 @@ import IconeVoltar from '../../img/IconeVoltar.png';
 import BicoDeEnyemeyer from '../../img/frascoLaboratorio.png' ;
 import Botao from './Botao';
 import SelectMetodos from './SelectMetodos';
+import { Link } from 'react-router-dom';
 const Laboratorio = () => {
     const mistura1 = new Mistura([agua, areia]);
   return (
@@ -24,7 +25,7 @@ const Laboratorio = () => {
             <div className="botoesLaboratorio">
               <Botao colorFundo='#000' colorTexto='#FDFDFD' texto='Separar'/>
               <SelectMetodos id='metodosModoLivre'/>
-              <Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Opções'/>
+              <Link id='voltarLaboratorio' to="/laboratorioOpcao"><Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Opções' width='100%'/></Link>
               
             </div>
                        

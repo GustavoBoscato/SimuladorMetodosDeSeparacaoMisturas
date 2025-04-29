@@ -6,7 +6,6 @@
 .laboratorioOpcoes {
     display: flex;
     width: 70%;
-
     flex-direction: column;
     
 }
@@ -51,4 +50,7 @@
     align-items: center;
     flex-direction: column;
     
+}
+#voltarLaboratorio{
+    width: 40%;
 }
