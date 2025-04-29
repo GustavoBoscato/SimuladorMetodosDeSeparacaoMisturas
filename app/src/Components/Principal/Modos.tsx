@@ -18,7 +18,7 @@ interface ModosProps {
         <p>Selecione o modo desejado.</p>
       
         <div className="opcoes">
-        <Link to='/modos'>
+        <Link to='/modoFacil' className='linkModos'>
         <div className="textoMistura">
           
             <h3 className='h3Mistura'>{titulo}</h3>
@@ -26,12 +26,15 @@ interface ModosProps {
           
           </div>
           </Link>
-          <div className="textoMistura">
+        <Link to="modoDificil" className='linkModos'>
+        <div className="textoMistura">
           
-            <h3 className='h3Mistura'>{titulo2}</h3>
-            <p className='paragrafoMistura'>{texto2}</p>
+          <h3 className='h3Mistura'>{titulo2}</h3>
+          <p className='paragrafoMistura'>{texto2}</p>
+        
+        </div>
+        </Link>
           
-          </div>
           
           </div>
           

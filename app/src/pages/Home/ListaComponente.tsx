@@ -1,8 +1,10 @@
 import React from 'react'
-
+import TabelaComponentes from '../../Components/Principal/TabelaComponentes'
 const ListaComponente = () => {
   return (
-    <div>ListaComponente</div>
+    <div>
+      <TabelaComponentes/>
+    </div>
   )
 }
 

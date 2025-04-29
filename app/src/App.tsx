@@ -32,10 +32,16 @@ function App() {
         <Navbar/>
       <Routes>
         <Route path="/" element={< Iniciar/>} />
-        <Route path="/simular" element={< Simular/>} />
+        <Route path="/modoDificil" element={< Simular/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
         <Route path="/listaComponente" element={<Modos titulo='Modo Fácil' titulo2='Modo Difícil' texto='Iniciantes' texto2='Peritos'/>} />
         <Route path="/laboratorioOpcao" element={<LaboratorioOpção/>} />
+        <Route path="/simular" element={<Modos titulo='Modo Fácil' texto='Utilize 
+        das misturas cadastradas no sistema para realizar experimentos. Este modo
+         prioriza a objetividade. Recomendado para iniciantes' 
+         titulo2='Modo Livre' texto2='Crie sua própria mistura, 
+         adicione componentes e faça experimentos! Este modo possui todas as ferramentas liberadas.'/>} />
+         
       </Routes>
       
     </BrowserRouter>
