@@ -5,9 +5,9 @@ interface OpcaoMisturaProps {
     h3: string;
     texto: string;
     img?: string;
-    mistura : Mistura;
+    
   }
-  const OpcaoMistura: React.FC<OpcaoMisturaProps> = ({h3,texto,img, mistura}) => {
+  const OpcaoMistura: React.FC<OpcaoMisturaProps> = ({h3,texto,img}) => {
   return (
     <div className='opcaoMistura'>
         <img src={img} alt="Mistura" className='imgMistura' />

@@ -14,9 +14,10 @@ import ListaComponente from './pages/Home/ListaComponente';
 import Iniciar from './pages/Home/Iniciar';
 import Modos from './pages/Home/Modos';
 import LaboratorioOpção from './pages/Home/LaboratorioOpção';
-import MisturasCadastradas from './pages/Home/MisturasCadastradas';
+import MisturasCadastradas from './pages/Home/MisturasCadastradas'
 import ModoFacil from './pages/Home/ModoFacil';
-
+import { listaMisturasModoFacil } from './data/dataMisturas';
+import { useState } from 'react';
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -27,6 +28,13 @@ function App() {
   const mistura6 = new Mistura([agua, oleoCozinha, etanol]);
   const mistura7 = new Mistura([areia, salCozinha]);
 
+  //Modo Fácil
+  const [MisturaFacil, setMisturaFacil]  = useState<Mistura>(mistura1);
+
+  const selecionarMisturaModoFacil = (x : number) : void =>{
+      setMisturaFacil(listaMisturasModoFacil[x])
+      console.log(listaMisturasModoFacil[x])
+  }
   const listaMisturas = [mistura1, mistura2, mistura3, mistura4, mistura5, mistura6, mistura7];         
   return (
     <div className="App">
@@ -44,8 +52,8 @@ function App() {
          prioriza a objetividade. Recomendado para iniciantes' 
          titulo2='Modo Livre' texto2='Crie sua própria mistura, 
          adicione componentes e faça experimentos! Este modo possui todas as ferramentas liberadas.'/>} />
-        <Route path="/modoFacil" element={< MisturasCadastradas/>} />
-        <Route path="/laboratorioModoFacil" element={<ModoFacil/>} />
+        <Route path="/modoFacil" element={< MisturasCadastradas selecionarMisturaModoFacil={selecionarMisturaModoFacil}/>} />
+        <Route path="/laboratorioModoFacil" element={<ModoFacil MisturaFacil={MisturaFacil}/>} />
       </Routes>
       
     </BrowserRouter>

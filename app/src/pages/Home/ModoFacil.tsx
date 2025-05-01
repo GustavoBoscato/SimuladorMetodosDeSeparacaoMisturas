@@ -8,11 +8,14 @@ import BicoDeEnyemeyer from '../../img/frascoLaboratorio.png' ;
 import Botao from '../../Components/Principal/Botao';
 import SelectMetodos from '../../Components/Principal/SelectMetodos';
 import { Link } from 'react-router-dom';
-const ModoFacil = () => {
+type MisturaFacilProps = {
+  MisturaFacil: Mistura;
+}
+const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil}) => {
     const mistura1 = new Mistura([agua, areia]);
   return (
     <div className='laboratorio'>
-        <ListaMistura h6='Mistura 01' mistura={mistura1}/>
+        <ListaMistura h6='Mistura 01' mistura={MisturaFacil}/>
         <div className="laboratorioOpcoes">
             <div className="topo">
             <img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' />
