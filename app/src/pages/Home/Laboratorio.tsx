@@ -15,7 +15,7 @@ const Laboratorio = () => {
         <ListaMistura h6='Mistura 01' mistura={mistura1}/>
         <div className="laboratorioOpcoes">
             <div className="topo">
-            <img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' />
+            <Link className='imagemVoltar' to="/simular"><img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' /></Link>
                 <h2>Simulação</h2>
                 <p id='modoNome'>Modo Difícil</p>
             </div>

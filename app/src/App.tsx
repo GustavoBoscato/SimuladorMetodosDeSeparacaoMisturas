@@ -18,6 +18,7 @@ import MisturasCadastradas from './pages/Home/MisturasCadastradas'
 import ModoFacil from './pages/Home/ModoFacil';
 import { listaMisturasModoFacil } from './data/dataMisturas';
 import { useState } from 'react';
+import Laboratorio from './pages/Home/Laboratorio';
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -43,7 +44,7 @@ function App() {
         <Navbar/>
       <Routes>
         <Route path="/" element={< Iniciar/>} />
-        <Route path="/modoDificil" element={< Simular/>} />
+        <Route path="/laboratorio" element={< Laboratorio/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
         <Route path="/listaComponente" element={<Modos titulo='Modo Fácil' titulo2='Modo Difícil' texto='Iniciantes' texto2='Peritos'/>} />
         <Route path="/laboratorioOpcao" element={<LaboratorioOpção/>} />

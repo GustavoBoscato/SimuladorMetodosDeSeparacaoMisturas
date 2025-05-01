@@ -18,7 +18,7 @@ const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil}) => {
         <ListaMistura h6='Mistura 01' mistura={MisturaFacil}/>
         <div className="laboratorioOpcoes">
             <div className="topo">
-            <img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' />
+            <Link className='imagemVoltar' to="/simular"><img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' /></Link>
                 <h2>Simulação</h2>
                 <p id='modoNome'>Modo Fácil</p>
             </div>

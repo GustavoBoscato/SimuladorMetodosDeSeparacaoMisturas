@@ -29,7 +29,7 @@ const LaboratorioOpção = () => {
             </div>
             <div className="resetarMisturaOuVoltar">
                 <Botao colorFundo='#2C6ED0' colorTexto='#FDFDFD' texto='Resetar Mistura' className="botaoLaboratorio"/>
-                <Link id='voltarLaboratorioOpcao' to="/simular"><Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Voltar' className="botaoLaboratorio" width='100%'/></Link>
+                <Link id='voltarLaboratorioOpcao' to="/laboratorio"><Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Voltar' className="botaoLaboratorio" width='100%'/></Link>
                 </div>
             </div>
 

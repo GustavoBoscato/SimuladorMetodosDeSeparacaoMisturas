@@ -26,7 +26,7 @@ interface ModosProps {
           
           </div>
           </Link>
-        <Link to="modoDificil" className='linkModos'>
+        <Link to="/laboratorio" className='linkModos'>
         <div className="textoMistura">
           
           <h3 className='h3Mistura'>{titulo2}</h3>
