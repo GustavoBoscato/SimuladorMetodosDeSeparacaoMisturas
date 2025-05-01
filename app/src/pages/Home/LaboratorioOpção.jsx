@@ -1,10 +1,10 @@
 import React from 'react'
 import './LaboratorioOpção.css';
-import ListaMisturaHorizontal from './ListaMisturaHorizontal'
+import ListaMisturaHorizontal from '../../Components/Principal/ListaMisturaHorizontal'
 import { Mistura } from '../../data/Mistura';
 import { agua, areia } from '../../data/dataComponentes';
-import Botao from './Botao';
-import SelectComponente from './SelectComponente';
+import Botao from '../../Components/Principal/Botao';
+import SelectComponente from '../../Components/Principal/SelectComponente';
 import { Link } from 'react-router-dom';
 const LaboratorioOpção = () => {
     const mistura1 = new Mistura([agua, areia]);

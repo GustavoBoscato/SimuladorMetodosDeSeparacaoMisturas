@@ -1,12 +1,12 @@
 import React from 'react'
-import ListaMistura from './ListaMistura'
+import ListaMistura from '../../Components/Principal/ListaMistura'
 import { Mistura } from '../../data/Mistura';
 import { agua, areia } from '../../data/dataComponentes';
 import './Laboratorio.css';
 import IconeVoltar from '../../img/IconeVoltar.png';
 import BicoDeEnyemeyer from '../../img/frascoLaboratorio.png' ;
-import Botao from './Botao';
-import SelectMetodos from './SelectMetodos';
+import Botao from '../../Components/Principal/Botao';
+import SelectMetodos from '../../Components/Principal/SelectMetodos';
 import { Link } from 'react-router-dom';
 const Laboratorio = () => {
     const mistura1 = new Mistura([agua, areia]);
@@ -23,7 +23,7 @@ const Laboratorio = () => {
               <img src={BicoDeEnyemeyer} alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
             </div>
             <div className="botoesLaboratorio">
-              <Botao colorFundo='#000' colorTexto='#FDFDFD' texto='Separar'/>
+              <Botao colorFundo='#000' colorTexto='#FDFDFD' texto='Separar' width=''/>
               <SelectMetodos id='metodosModoLivre'/>
               <Link id='voltarLaboratorio' to="/laboratorioOpcao"><Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Opções' width='100%'/></Link>
               

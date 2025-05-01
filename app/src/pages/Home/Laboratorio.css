@@ -54,3 +54,8 @@
 #voltarLaboratorio{
     width: 40%;
 }
+a {
+    width: 30%;
+    text-decoration: none;
+    color: black;
+}

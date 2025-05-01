@@ -12,8 +12,11 @@ import { Link, Route, BrowserRouter, Routes} from 'react-router-dom';
 import Simular from './pages/Home/Simular';
 import ListaComponente from './pages/Home/ListaComponente';
 import Iniciar from './pages/Home/Iniciar';
-import Modos from './Components/Principal/Modos';
-import LaboratorioOpção from './Components/Principal/LaboratorioOpção';
+import Modos from './pages/Home/Modos';
+import LaboratorioOpção from './pages/Home/LaboratorioOpção';
+import MisturasCadastradas from './pages/Home/MisturasCadastradas';
+import ModoFacil from './pages/Home/ModoFacil';
+
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -41,7 +44,8 @@ function App() {
          prioriza a objetividade. Recomendado para iniciantes' 
          titulo2='Modo Livre' texto2='Crie sua própria mistura, 
          adicione componentes e faça experimentos! Este modo possui todas as ferramentas liberadas.'/>} />
-         
+        <Route path="/modoFacil" element={< MisturasCadastradas/>} />
+        <Route path="/laboratorioModoFacil" element={<ModoFacil/>} />
       </Routes>
       
     </BrowserRouter>

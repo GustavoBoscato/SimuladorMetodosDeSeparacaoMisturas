@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Modos from '../../Components/Principal/Modos';
-import Laboratorio from '../../Components/Principal/Laboratorio';
+import Modos from './Modos';
+import Laboratorio from './Laboratorio';
 const Simular = () => {
   const [Number, setNumber] = useState(0);
   const exibirTelas = (num : Number) => {
