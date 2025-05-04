@@ -22,7 +22,7 @@ import Laboratorio from './pages/Home/Laboratorio';
 
 function App() {
   
-  const mistura1 = new Mistura([agua, areia]);
+  const mistura1 = new Mistura([agua, etanol]);
   const mistura2 = new Mistura([agua, oleoCozinha]);
   const mistura3 = new Mistura([agua, salCozinha]);
   const mistura4 = new Mistura([agua, etanol, salCozinha]);

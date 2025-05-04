@@ -62,7 +62,9 @@ export class Mistura {
     this.calcularTipo();
     this.calcularClassificacao();  
   }
-
+  resetarMistura(componente1: ComponenteMistura, componente2 : ComponenteMistura){
+    this._itens = [componente1, componente2]
+  }
 
   constructor(componentes: Array<ComponenteMistura>) {
     this.itens = componentes;

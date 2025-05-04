@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './LaboratorioOpção.css';
 import ListaMisturaHorizontal from '../../Components/Principal/ListaMisturaHorizontal'
 import { Mistura } from '../../data/Mistura';
-import { agua, areia } from '../../data/dataComponentes';
+import { agua, areia, etanol } from '../../data/dataComponentes';
 import Botao from '../../Components/Principal/Botao';
 import SelectComponente from '../../Components/Principal/SelectComponente';
 import { Link } from 'react-router-dom';
@@ -34,9 +34,9 @@ const LaboratorioOpção = ({misturaDificil}) => {
                 </div>
                 <div className="conjuntoBotaoSelect">
                 <Link to='/laboratorio'><button className='buttonPadrao' onClick={() => {
-                                    let componentesMistura = listaComponentes.find((value) => value.nome === SelectRemover);
+                                    
                                     misturaDificil.removerComponenteMistura(SelectRemover);
-                                    console.log(misturaDificil)
+                                    
                                     
                                     }} style={{backgroundColor: "#F11313", color: '#FDFDFD', width: '100%'}}>Remover Componente</button></Link>
                     
@@ -45,7 +45,11 @@ const LaboratorioOpção = ({misturaDificil}) => {
                 </div>
             </div>
             <div className="resetarMisturaOuVoltar">
-                <Botao colorFundo='#2C6ED0' colorTexto='#FDFDFD' texto='Resetar Mistura' className="botaoLaboratorio"/>
+            <Link to='/laboratorio'><button className='buttonPadrao' onClick={() => {
+                                    
+                                    misturaDificil.resetarMistura(agua, etanol);
+                                    }} style={{backgroundColor: "#2C6ED0", color: '#FDFDFD', width: '65%'}}>Resetar Mistura</button></Link>
+                
                 <Link className='voltarLaboratorioOpcao' to="/laboratorio"><Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Voltar' className="botaoLaboratorio" width='100%'/></Link>
                 </div>
             </div>
