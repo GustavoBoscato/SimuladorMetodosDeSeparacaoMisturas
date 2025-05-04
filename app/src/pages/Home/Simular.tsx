@@ -25,7 +25,7 @@ const Simular = () => {
 
   return (
     <div>
-      <Laboratorio/>
+      
     </div>
   )
 }

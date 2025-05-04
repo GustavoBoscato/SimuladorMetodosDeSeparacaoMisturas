@@ -19,6 +19,7 @@ import ModoFacil from './pages/Home/ModoFacil';
 import { listaMisturasModoFacil } from './data/dataMisturas';
 import { useState } from 'react';
 import Laboratorio from './pages/Home/Laboratorio';
+
 function App() {
   
   const mistura1 = new Mistura([agua, areia]);
@@ -31,6 +32,9 @@ function App() {
 
   //Modo Fácil
   const [MisturaFacil, setMisturaFacil]  = useState<Mistura>(mistura1);
+  const [MisturaDificil, setMisturaDificil]  = useState<Mistura>(mistura1);
+
+
 
   const selecionarMisturaModoFacil = (x : number) : void =>{
       setMisturaFacil(listaMisturasModoFacil[x])
@@ -44,17 +48,17 @@ function App() {
         <Navbar/>
       <Routes>
         <Route path="/" element={< Iniciar/>} />
-        <Route path="/laboratorio" element={< Laboratorio/>} />
+        <Route path="/laboratorio" element={< Laboratorio misturaDificil={MisturaDificil} setMisturaDificil={setMisturaDificil}/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
         <Route path="/listaComponente" element={<Modos titulo='Modo Fácil' titulo2='Modo Difícil' texto='Iniciantes' texto2='Peritos'/>} />
-        <Route path="/laboratorioOpcao" element={<LaboratorioOpção/>} />
+        <Route path="/laboratorioOpcao" element={<LaboratorioOpção misturaDificil={MisturaDificil}/>} />
         <Route path="/simular" element={<Modos titulo='Modo Fácil' texto='Utilize 
         das misturas cadastradas no sistema para realizar experimentos. Este modo
          prioriza a objetividade. Recomendado para iniciantes' 
          titulo2='Modo Livre' texto2='Crie sua própria mistura, 
          adicione componentes e faça experimentos! Este modo possui todas as ferramentas liberadas.'/>} />
         <Route path="/modoFacil" element={< MisturasCadastradas selecionarMisturaModoFacil={selecionarMisturaModoFacil}/>} />
-        <Route path="/laboratorioModoFacil" element={<ModoFacil MisturaFacil={MisturaFacil}/>} />
+        <Route path="/laboratorioModoFacil" element={<ModoFacil setMisturaFacil={setMisturaFacil} MisturaFacil={MisturaFacil}/>} />
       </Routes>
       
     </BrowserRouter>

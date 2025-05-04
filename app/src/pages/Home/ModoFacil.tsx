@@ -8,11 +8,15 @@ import BicoDeEnyemeyer from '../../img/frascoLaboratorio.png' ;
 import Botao from '../../Components/Principal/Botao';
 import SelectMetodos from '../../Components/Principal/SelectMetodos';
 import { Link } from 'react-router-dom';
+import { metodoSeparacao } from '../../utils/metodos';
+import { separarMistura } from '../../utils/metodos';
+import { useState } from 'react';
 type MisturaFacilProps = {
   MisturaFacil: Mistura;
+  setMisturaFacil: React.Dispatch<React.SetStateAction<Mistura>>;
 }
-const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil}) => {
-    const mistura1 = new Mistura([agua, areia]);
+const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil, setMisturaFacil}) => {
+    const [MetodoSeparacao, setMetodoSeparacao]  = useState<metodoSeparacao>('centrifugação');
   return (
     <div className='laboratorio'>
         <ListaMistura h6='Mistura 01' mistura={MisturaFacil}/>
@@ -26,8 +30,22 @@ const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil}) => {
               <img src={BicoDeEnyemeyer} alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
             </div>
             <div className="botoesLaboratorio">
-              <Botao colorFundo='#000' colorTexto='#FDFDFD' texto='Separar' width=''/>
-              <SelectMetodos id='metodosModoLivre'/>
+              <button className='buttonPadrao' onClick={() => {
+                              let misturaNova = (separarMistura(MetodoSeparacao, MisturaFacil))
+                              if (misturaNova) {
+                                
+                                if (Array.isArray(misturaNova)) {
+                        
+                                  if (misturaNova.length > 0) {
+                                    setMisturaFacil(misturaNova[0]);
+                                    console.log(MisturaFacil)
+                                  }
+                                }
+                                
+                              }
+                              
+                              }} style={{backgroundColor: "#000", color: '#FDFDFD', width: ''}}>Separar</button>
+              <SelectMetodos id='metodosModoLivre' setMetodoSeparacao={ setMetodoSeparacao}/>
               
               
             </div>

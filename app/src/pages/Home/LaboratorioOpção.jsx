@@ -6,12 +6,12 @@ import { agua, areia } from '../../data/dataComponentes';
 import Botao from '../../Components/Principal/Botao';
 import SelectComponente from '../../Components/Principal/SelectComponente';
 import { Link } from 'react-router-dom';
-const LaboratorioOpção = () => {
+const LaboratorioOpção = ({misturaDificil}) => {
     const mistura1 = new Mistura([agua, areia]);
   return (
     <div>        
         
-            <ListaMisturaHorizontal h6='Mistura 01' mistura={mistura1}/>
+            <ListaMisturaHorizontal h6='Mistura 01' mistura={misturaDificil}/>
             <div className="conteinerLaboratorioOpcao">
                 
 
