@@ -13,6 +13,7 @@ const LaboratorioOpção = ({misturaDificil}) => {
     misturaDificil.calcularTipo();
     misturaDificil.calcularClassificacao();
     const [SelectAdicionar, setSelectAdicionar] = useState('Água')
+    const [SelectRemover, setSelectRemover] = useState('Água')
   return (
     <div>        
         
@@ -29,11 +30,17 @@ const LaboratorioOpção = ({misturaDificil}) => {
                                     console.log(misturaDificil)
                                     
                                     }} style={{backgroundColor: "#59D868", color: '#363636', width: '100%'}}>Adicionar Componente</button></Link>
-                    <SelectComponente setSelectAdicionar={setSelectAdicionar} id='selectAdicionarComponente' width='30%'/>
+                    <SelectComponente setSelect={setSelectAdicionar} id='selectAdicionarComponente' width='30%'/>
                 </div>
                 <div className="conjuntoBotaoSelect">
-                    <Botao colorFundo='#F11313' colorTexto='#FDFDFD' texto='Remover Componente' width='40%'/>
-                    <SelectComponente id='selectRemoverComponente' width='30%'/>
+                <Link to='/laboratorio'><button className='buttonPadrao' onClick={() => {
+                                    let componentesMistura = listaComponentes.find((value) => value.nome === SelectRemover);
+                                    misturaDificil.removerComponenteMistura(SelectRemover);
+                                    console.log(misturaDificil)
+                                    
+                                    }} style={{backgroundColor: "#F11313", color: '#FDFDFD', width: '100%'}}>Remover Componente</button></Link>
+                    
+                    <SelectComponente setSelect={setSelectRemover} id='selectRemoverComponente' width='30%'/>
                 </div>
                 </div>
             </div>

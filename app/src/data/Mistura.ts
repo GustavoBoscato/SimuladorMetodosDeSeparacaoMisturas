@@ -57,6 +57,11 @@ export class Mistura {
 
     
   }
+  removerComponenteMistura(componente: string): void {
+    this._itens = this._itens.filter((value) => value.nome !== componente);
+    this.calcularTipo();
+    this.calcularClassificacao();  
+  }
 
 
   constructor(componentes: Array<ComponenteMistura>) {
