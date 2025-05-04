@@ -32,9 +32,12 @@ function App() {
 
   //Modo Fácil
   const [MisturaFacil, setMisturaFacil]  = useState<Mistura>(mistura1);
+   
   const [MisturaDificil, setMisturaDificil]  = useState<Mistura>(mistura1);
-
-
+  MisturaDificil.calcularTipo();
+  MisturaDificil.calcularClassificacao();
+  MisturaFacil.calcularTipo();
+  MisturaFacil.calcularClassificacao();
 
   const selecionarMisturaModoFacil = (x : number) : void =>{
       setMisturaFacil(listaMisturasModoFacil[x])

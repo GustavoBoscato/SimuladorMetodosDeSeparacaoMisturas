@@ -8,11 +8,7 @@ interface SelectMetodoProps {
 
 
 const SelectMetodos: React.FC<SelectMetodoProps> = ({ id, setMetodoSeparacao }) => {
-    const alterarMetodoSeparacao = () =>{
-       let select = document.getElementById(id);
-       setMetodoSeparacao(select)
-
-    }
+    
     return (
         <select className='selectMetodos' name="selectComponente" id={id} onChange={(e) => {
             setMetodoSeparacao(e.target.value)

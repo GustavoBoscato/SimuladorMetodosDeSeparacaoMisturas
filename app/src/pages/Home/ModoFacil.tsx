@@ -17,6 +17,8 @@ type MisturaFacilProps = {
 }
 const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil, setMisturaFacil}) => {
     const [MetodoSeparacao, setMetodoSeparacao]  = useState<metodoSeparacao>('centrifugação');
+    MisturaFacil.calcularTipo();
+    MisturaFacil.calcularClassificacao();
   return (
     <div className='laboratorio'>
         <ListaMistura h6='Mistura 01' mistura={MisturaFacil}/>

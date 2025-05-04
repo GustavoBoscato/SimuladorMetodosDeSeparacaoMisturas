@@ -44,7 +44,8 @@ const Laboratorio : React.FC<MisturaDificilProps> = ({misturaDificil, setMistura
                       console.log(misturaDificil)
                     }
                   }
-                  
+                  misturaDificil.calcularTipo();
+                  misturaDificil.calcularClassificacao();
                 }
                 
                 }} style={{backgroundColor: "#000", color: '#FDFDFD', width: ''}}>Separar</button>
