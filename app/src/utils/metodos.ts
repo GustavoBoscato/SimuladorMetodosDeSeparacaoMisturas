@@ -129,7 +129,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
     break;
   case 'destilação fracionada':
     //Condicionando o uso da destilação fracionada para as misturas homogênea e L/L.
-    if (mistura.tipo === 'L/L' && mistura.classificacao === 'Homogenea') {
+    if (mistura.tipo === 'L/L' && mistura.classificacao === 'Homogenea' && mistura.itens.length >= 2) {
       let menorTemperaturaEbulicao : number = mistura.itens[0].pontoDeEbulicao;
       let elementoMenorTemperaturaEbulicao : ComponenteMistura = mistura.itens[0];
       //Descobre e armazena o elemento com menor temperatura de ebulição
@@ -148,9 +148,12 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       })
       //Cria uma nova mistura com o elemento de menor temperatura de ebulição como componente.
       let misturaSeparada = new Mistura([elementoMenorTemperaturaEbulicao]);
+      console.log(mistura, misturaSeparada)
       return[mistura, misturaSeparada]
       // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja homogênea L/L
-    } else return `A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+    } else if (mistura.itens.length < 2){
+      return  `Impossível separar uma mistura com apenas um componente.`
+    } else return `A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}` 
      break;
   case  'filtração':
     //Condicionando o uso da filtração para as misturas heterogênea e S/L.

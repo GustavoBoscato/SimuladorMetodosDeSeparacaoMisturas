@@ -9,12 +9,16 @@ interface InformacaoMisturaProps {
   const InformacaoMistura: React.FC<InformacaoMisturaProps> = ({ h3, texto, img }) => {
     return (
       <section>
-        <div className="img">
-        {img && <img src={img} className='imgMistura'/>}
-        </div>
+        
         <div className="textoMistura">
-          <h3 className='h3Mistura'>{h3}</h3>
-          <p className='paragrafoMistura'>{texto}</p>
+          <div className="img">
+          {img && <img src={img} className='imgMistura'/>}
+          </div>
+          <div className="textoInformacaoMistura">
+            <h3 className='h3Mistura'>{h3}</h3>
+            <p className='paragrafoMistura'>{texto}</p>
+          </div>
+          
           </div>
           
       </section>

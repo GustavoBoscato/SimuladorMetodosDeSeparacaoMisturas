@@ -11,8 +11,11 @@ interface OpcaoMisturaProps {
   return (
     <div className='opcaoMistura'>
         <img src={img} alt="Mistura" className='imgMistura' />
+        <div className="textoOpcaoMistura">
         <h3>{h3}</h3>
+        </div>
         <p>{texto}</p>
+        
     </div>
   )
 }

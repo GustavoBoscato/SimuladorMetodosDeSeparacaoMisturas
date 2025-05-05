@@ -4,7 +4,7 @@ import { Mistura } from '../../data/Mistura';
 import { agua, areia } from '../../data/dataComponentes';
 import './Laboratorio.css';
 import IconeVoltar from '../../img/IconeVoltar.png';
-import BicoDeEnyemeyer from '../../img/frascoLaboratorio.png' ;
+
 import Botao from '../../Components/Principal/Botao';
 import SelectMetodos from '../../Components/Principal/SelectMetodos';
 import { Link } from 'react-router-dom';
@@ -24,12 +24,12 @@ const Laboratorio : React.FC<MisturaDificilProps> = ({misturaDificil, setMistura
         <ListaMistura h6='Mistura 01' mistura={misturaDificil}/>
         <div className="laboratorioOpcoes">
             <div className="topo">
-            <Link className='imagemVoltar' to="/simular"><img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' /></Link>
+            <Link className='imagemVoltar' to="/simular"><img src='../../../public/img/IconeVoltar.png' alt="Imagem voltar" className='imagemVoltar' /></Link>
                 <h2>Simulação</h2>
                 <p id='modoNome'>Modo Difícil</p>
             </div>
             <div className="conteinerFrasco">
-              <img src={BicoDeEnyemeyer} alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
+              <img src="'../../../public/img/frascoLaboratorio.png'" alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
             </div>
             <div className="botoesLaboratorio">
   
@@ -43,6 +43,8 @@ const Laboratorio : React.FC<MisturaDificilProps> = ({misturaDificil, setMistura
                       setMisturaDificil(misturaNova[0]);
                       console.log(misturaDificil)
                     }
+                  } else {
+                    alert(misturaNova);
                   }
                   misturaDificil.calcularTipo();
                   misturaDificil.calcularClassificacao();

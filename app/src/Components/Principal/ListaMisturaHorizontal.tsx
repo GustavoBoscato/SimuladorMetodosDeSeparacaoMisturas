@@ -9,6 +9,8 @@ interface ListaMisturaProps {
   return (
     <div className='ListaMistura'>
         <p>Simulação</p>
+        <p>Classificação da Mistura: {mistura.classificacao}</p>
+        <p>Tipo da Mistura: {mistura.tipo}</p>
         <h6>{h6}</h6>
         <ul>
           {mistura.itens.map((value) => <li>{value.nome}</li>)}
