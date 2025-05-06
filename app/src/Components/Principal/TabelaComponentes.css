@@ -1,22 +1,23 @@
-
 .ComponenteTabela {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  .ComponenteTabela th {
-    background-color: #353a3f;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
-  .ComponenteTabela td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.ComponenteTabela th, .ComponenteTabela td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000; 
+}
+
+.ComponenteTabela th {
+  background-color: #e6e3e3; 
+  color: rgb(58, 53, 53);
+}
+
+.ComponenteTabela td {
+  color: #353a3f; 
+}
