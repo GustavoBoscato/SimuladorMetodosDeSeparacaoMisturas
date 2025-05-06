@@ -10,8 +10,7 @@ import { listaComponentes } from '../../data/dataComponentes';
             <th>Ponto de Ebulição</th>
             <th>Tamanho</th>
             <th>Estado Físico</th>
-            <th>Solúvel em Água</th>
-            <th>Magnetismo</th>
+            
         </tr>
         {listaComponentes.map((value) => (
             <tr className='ComponenteTabela'>
@@ -20,8 +19,7 @@ import { listaComponentes } from '../../data/dataComponentes';
                 <th>{value.pontoDeEbulicao}</th>
                 <th>{value.tamanho}</th>
                 <th>{value.estadoFisico}</th>
-                <th>{value.soluvelEmAgua}</th>
-                <th>{value.magnetismo}</th>
+                
 
             </tr>
                     ))}
