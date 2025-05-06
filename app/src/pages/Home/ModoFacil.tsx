@@ -10,12 +10,19 @@ import { Link } from 'react-router-dom';
 import { metodoSeparacao } from '../../utils/metodos';
 import { separarMistura } from '../../utils/metodos';
 import { useState } from 'react';
-
+import IconeVoltar from '../../img/IconeVoltar.png';
+import frascoLaboratorio from '../../img/frascoLaboratorio.png';
+import { useEffect } from 'react';
 type MisturaFacilProps = {
   MisturaFacil: Mistura;
   setMisturaFacil: React.Dispatch<React.SetStateAction<Mistura>>;
 }
 const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil, setMisturaFacil}) => {
+  useEffect(() => {
+    MisturaFacil.calcularTipo();
+    MisturaFacil.calcularClassificacao();
+  }, [MisturaFacil]);
+
     const [MetodoSeparacao, setMetodoSeparacao]  = useState<metodoSeparacao>('centrifugação');
     MisturaFacil.calcularTipo();
     MisturaFacil.calcularClassificacao();
@@ -24,12 +31,12 @@ const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil, setMisturaFacil})
         <ListaMistura h6='Mistura 01' mistura={MisturaFacil}/>
         <div className="laboratorioOpcoes">
             <div className="topo">
-            <Link className='imagemVoltar' to="/simular"><img src='../../../public/img/IconeVoltar.png' alt="Imagem voltar" className='imagemVoltar' /></Link>
+            <Link className='imagemVoltar' to="/simular"><img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' /></Link>
                 <h2>Simulação</h2>
                 <p id='modoNome'>Modo Fácil</p>
             </div>
             <div className="conteinerFrasco">
-              <img src="../../../public/img/frascoLaboratorio.png" alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
+              <img src={frascoLaboratorio} alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
             </div>
             <div className="botoesLaboratorio">
               <button className='buttonPadrao' onClick={() => {
@@ -40,7 +47,8 @@ const ModoFacil: React.FC<MisturaFacilProps> = ({MisturaFacil, setMisturaFacil})
                         
                                   if (misturaNova.length > 0) {
                                     setMisturaFacil(misturaNova[0]);
-                                    console.log(MisturaFacil)
+                                    setMetodoSeparacao('destilação simples')
+                                    
                                   }
                                 } else{
                                   alert(misturaNova);

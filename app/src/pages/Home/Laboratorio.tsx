@@ -4,7 +4,7 @@ import { Mistura } from '../../data/Mistura';
 import { agua, areia } from '../../data/dataComponentes';
 import './Laboratorio.css';
 import IconeVoltar from '../../img/IconeVoltar.png';
-
+import frascoLaboratorio from '../../img/frascoLaboratorio.png';
 import Botao from '../../Components/Principal/Botao';
 import SelectMetodos from '../../Components/Principal/SelectMetodos';
 import { Link } from 'react-router-dom';
@@ -12,24 +12,28 @@ import { separarMistura } from '../../utils/metodos';
 import { useState } from 'react';
 import { metodoSeparacao } from '../../utils/metodos';
 import { ComponenteMistura } from '../../data/ComponenteMistura';
+import { useEffect } from 'react';
 type MisturaDificilProps = {
   misturaDificil: Mistura;
   setMisturaDificil : Function;
 }
 const Laboratorio : React.FC<MisturaDificilProps> = ({misturaDificil, setMisturaDificil}) => {
     const [MetodoSeparacao, setMetodoSeparacao]  = useState<metodoSeparacao>('centrifugação');
-    
+    useEffect(() => {
+        misturaDificil.calcularTipo();
+        misturaDificil.calcularClassificacao();
+      }, [misturaDificil]);
   return (
     <div className='laboratorio'>
         <ListaMistura h6='Mistura 01' mistura={misturaDificil}/>
         <div className="laboratorioOpcoes">
             <div className="topo">
-            <Link className='imagemVoltar' to="/simular"><img src='../../../public/img/IconeVoltar.png' alt="Imagem voltar" className='imagemVoltar' /></Link>
+            <Link className='imagemVoltar' to="/simular"><img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' /></Link>
                 <h2>Simulação</h2>
                 <p id='modoNome'>Modo Difícil</p>
             </div>
             <div className="conteinerFrasco">
-              <img src="'../../../public/img/frascoLaboratorio.png'" alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
+              <img src={frascoLaboratorio} alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
             </div>
             <div className="botoesLaboratorio">
   
@@ -41,13 +45,12 @@ const Laboratorio : React.FC<MisturaDificilProps> = ({misturaDificil, setMistura
           
                     if (misturaNova.length > 0) {
                       setMisturaDificil(misturaNova[0]);
-                      console.log(misturaDificil)
+                      setMetodoSeparacao('destilação simples')
                     }
                   } else {
                     alert(misturaNova);
                   }
-                  misturaDificil.calcularTipo();
-                  misturaDificil.calcularClassificacao();
+                  
                 }
                 
                 }} style={{backgroundColor: "#000", color: '#FDFDFD', width: ''}}>Separar</button>
