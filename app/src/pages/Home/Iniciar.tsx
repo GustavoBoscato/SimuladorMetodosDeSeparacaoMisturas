@@ -14,15 +14,16 @@ import dissolucaoFracionada from '../../img/dissolução fracionada.jpg'
 import cientista from '../../img/cientistaComico.jpg';
 import laboratorioQuimica from '../../img/laboratorioQuimica.jpg'
 import imagemSeparacao from '../../img/imagemSeparacao.jpg'
+
 import './Iniciar.css'
 const Iniciar = () => {
   return (
     <div className='iniciar'>
-      <TelaInicial img={laboratorioQuimica} h2='Seja Bem Vindo!' texto1='Esta é uma feramenta de aprendizado dos métodos de separação de misturas.' texto2='Caro usuário, nesta interativa ferramenta, você poderá aprender e simular o resultado dos principais métodos de separação de misturas. Bem como poderá colocar em cheque suas habilidades por meio de desafios!'/>
+      <TelaInicial img={laboratorioQuimica} h2='Simulador dos métodos de separação de misturas' texto1='Ferramenta interativa para o aprendizado.' texto2='Simule e coloque em prática suas habilidades sobre os métodos de separação de misturas.' texto3='Desafie-se a compreender o conteúdo dos métodos de separação.' texto4='Ideal para o ensino de química.'/>
             
             <div className="infoMetodosSeparacao">
               <div className="metodosSeparacao">
-              <img src={imagemSeparacao} alt="ImagemTelaInicial" className='imagemSeparacao'/>
+
               <h3>Métodos de Separação</h3>
               
               </div>

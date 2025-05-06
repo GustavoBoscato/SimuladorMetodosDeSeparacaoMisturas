@@ -12,7 +12,7 @@ interface InformacaoMisturaProps {
         
         <div className="textoMistura">
           <div className="img">
-          {img && <img src={img} className='imgMistura'/>}
+          {img && <img src={img} draggable="false" className='imgMistura'/>}
           </div>
           <div className="textoInformacaoMistura">
             <h3 className='h3Mistura'>{h3}</h3>
