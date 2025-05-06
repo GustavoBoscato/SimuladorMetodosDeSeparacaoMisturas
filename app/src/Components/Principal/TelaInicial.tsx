@@ -1,7 +1,7 @@
 import React from 'react'
 import './TelaInicial.css';
 import { Atom } from 'lucide';
-import iconeLivro from '../../img/iconeLivro.png';
+import iconeLivro from '../../img/iconeLivro.png'
 import iconeLivroFechado from '../../img/iconeLivroFechado.png';
 import iconeFoguete from '../../img/iconeFoguete.png'
 import iconeAtomo from '../../img/iconeAtomo.png';
