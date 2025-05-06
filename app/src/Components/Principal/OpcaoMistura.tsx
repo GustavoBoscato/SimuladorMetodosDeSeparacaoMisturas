@@ -10,7 +10,7 @@ interface OpcaoMisturaProps {
   const OpcaoMistura: React.FC<OpcaoMisturaProps> = ({h3,texto,img}) => {
   return (
     <div className='opcaoMistura'>
-        <img src={img} alt="Mistura" className='imgMistura' />
+        <img draggable="false" src={img} alt="Mistura" className='imgMistura' />
         <div className="textoOpcaoMistura">
         <h3>{h3}</h3>
         </div>
