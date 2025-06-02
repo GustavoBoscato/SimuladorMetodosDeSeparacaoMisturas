@@ -12,6 +12,7 @@ button.buttonPadrao {
   font-weight: bold;
   font-size: 1rem;
   transition: background-color 0.3s;
+  width: 30%;
 }
 
 button.buttonPadrao:hover {
