@@ -1,7 +1,7 @@
 import React from 'react'
 import ListaMistura from '../../Components/Principal/ListaMistura'
 import { Mistura } from '../../data/Mistura';
-import { agua, areia } from '../../data/dataComponentes';
+import { agua, areia, etanol, ferro } from '../../data/dataComponentes';
 import './Laboratorio.css';
 import IconeVoltar from '../../img/IconeVoltar.png';
 import frascoLaboratorio from '../../img/frascoLaboratorio.png';
@@ -13,54 +13,43 @@ import { useState } from 'react';
 import { metodoSeparacao } from '../../utils/metodos';
 import { ComponenteMistura } from '../../data/ComponenteMistura';
 import { useEffect } from 'react';
+import MisturaModoDificil from '../../Components/Principal/MisturaModoDificil';
 type MisturaDificilProps = {
   misturaDificil: Mistura;
   setMisturaDificil : Function;
 }
+
+
 const Laboratorio : React.FC<MisturaDificilProps> = ({misturaDificil, setMisturaDificil}) => {
+  const mistura1 = new Mistura([agua, etanol])
+  const mistura2 = new Mistura([agua, ferro])
     const [MetodoSeparacao, setMetodoSeparacao]  = useState<metodoSeparacao>('centrifugação');
+    const [TodasMisturas, setTodasMisturas] = useState<Mistura[]>([mistura1])
     useEffect(() => {
         misturaDificil.calcularTipo();
         misturaDificil.calcularClassificacao();
       }, [misturaDificil]);
+      useEffect(() => {
+          console.log("TodasMisturas atualizada:", TodasMisturas);
+      }, [TodasMisturas]);
   return (
     <div className='laboratorio'>
-        <ListaMistura h6='Mistura 01' mistura={misturaDificil}/>
-        <div className="laboratorioOpcoes">
-            <div className="topo">
-            <Link className='imagemVoltar' to="/simular"><img src={IconeVoltar} alt="Imagem voltar" className='imagemVoltar' /></Link>
-                <h2>Simulação</h2>
-                <p id='modoNome'>Modo Difícil</p>
-            </div>
-            <div className="conteinerFrasco">
-              <img src={frascoLaboratorio} alt="FrascoLaboratorio" className='FrascoLaboratorio' draggable="false" />
-            </div>
-            <div className="botoesLaboratorio">
-  
-              <button className='buttonPadrao' onClick={() => {
-                let misturaNova = (separarMistura(MetodoSeparacao, misturaDificil))
-                if (misturaNova) {
-                  
-                  if (Array.isArray(misturaNova)) {
-          
-                    if (misturaNova.length > 0) {
-                      setMisturaDificil(misturaNova[0]);
-                      setMetodoSeparacao('destilação simples')
-                    }
-                  } else {
-                    alert(misturaNova);
-                  }
-                  
-                }
-                
-                }} style={{backgroundColor: "#000", color: '#FDFDFD', width: ''}}>Separar</button>
-              <SelectMetodos id='metodosModoLivre' setMetodoSeparacao={setMetodoSeparacao}/>
-              <Link id='voltarLaboratorio' to="/laboratorioOpcao"><Botao colorFundo='#484D50' colorTexto='#FDFDFD' texto='Opções' width='100%'/></Link>
+      
+        {Array.isArray(TodasMisturas) && TodasMisturas.map((value, index) => (
+  <MisturaModoDificil
+    key={index}
+    mistura={value}
+    TodasMisturas={TodasMisturas}
+    setTodasMisturas={setTodasMisturas}
+    index={(index + 1).toString()}
+  />
+))}
+
               
             </div>
                        
-        </div>
-    </div>
+        
+   
   )
 }
 

@@ -17,7 +17,7 @@ import LaboratorioOpção from './pages/Home/LaboratorioOpção';
 import MisturasCadastradas from './pages/Home/MisturasCadastradas'
 import ModoFacil from './pages/Home/ModoFacil';
 import { listaMisturasModoFacil } from './data/dataMisturas';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Laboratorio from './pages/Home/Laboratorio';
 
 function App() {
@@ -38,6 +38,8 @@ function App() {
   MisturaDificil.calcularClassificacao();
   MisturaFacil.calcularTipo();
   MisturaFacil.calcularClassificacao();
+  useEffect(() => {
+  }, [MisturaDificil]);
 
   const selecionarMisturaModoFacil = (x : number) : void =>{
       setMisturaFacil(listaMisturasModoFacil[x])
@@ -54,7 +56,7 @@ function App() {
         <Route path="/laboratorio" element={< Laboratorio misturaDificil={MisturaDificil} setMisturaDificil={setMisturaDificil}/>} />
         <Route path="/listaComponente" element={<ListaComponente/>} />
         <Route path="/listaComponente" element={<Modos titulo='Modo Fácil' titulo2='Modo Difícil' texto='Iniciantes' texto2='Peritos'/>} />
-        <Route path="/laboratorioOpcao" element={<LaboratorioOpção misturaDificil={MisturaDificil}/>} />
+        
         <Route path="/simular" element={<Modos titulo='Modo Fácil' texto='Utilize 
         das misturas cadastradas no sistema para realizar experimentos. Este modo
          prioriza a objetividade. Recomendado para iniciantes' 
