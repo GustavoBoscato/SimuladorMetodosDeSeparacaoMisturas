@@ -25,7 +25,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    margin-right: 30px;
+    width: 45%;
     margin-top: 50px;
 }
 .voltarLaboratorioOpcao{
