@@ -13,7 +13,7 @@ interface ListaMisturaProps {
         <p>Classificação da Mistura: {mistura.classificacao}</p>
         <p>Tipo da Mistura: {mistura.tipo}</p>
         <ul>
-          {mistura.itens.map((value) => <li>{value.nome}</li>)}
+          {mistura.itens.map((value, ind) => <li key={ind}>{value.nome}</li>)}
         </ul>
     </div>
   )

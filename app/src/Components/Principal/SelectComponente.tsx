@@ -1,14 +1,15 @@
 import React from 'react';
 import './SelectComponente.css';
-import { listaComponentes } from '../../data/dataComponentes';
+import { ComponenteMistura } from '../../data/ComponenteMistura';
 
 interface SelectComponenteProps {
     id: string;
     width: string;
     setSelect : Function;
+    listaComponentes : Array<ComponenteMistura>;
 }
 
-const SelectComponente: React.FC<SelectComponenteProps> = ({ id, width, setSelect }) => {
+const SelectComponente: React.FC<SelectComponenteProps> = ({ id, width, setSelect, listaComponentes }) => {
     return (
         <select onChange={(e) => {
             setSelect(e.target.value);

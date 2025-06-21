@@ -13,10 +13,11 @@ interface ListaMisturaProps {
         <p>Tipo da Mistura: {mistura.tipo}</p>
         <h6>{h6}</h6>
         <ul>
-          {mistura.itens.map((value) => <li>{value.nome}</li>)}
+          {mistura.itens.map((value, ind) => <li key={ind}>{value.nome}</li>)}
         </ul>
     </div>
   )
 }
 
 export default ListaMisturaHorizontal
+

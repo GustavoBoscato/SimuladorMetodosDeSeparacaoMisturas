@@ -8,70 +8,84 @@ import SelectComponente from '../../Components/Principal/SelectComponente';
 import { Link } from 'react-router-dom';
 import { listaComponentes } from '../../data/dataComponentes';
 import { useEffect } from 'react';
-const LaboratorioOpção = ({misturaDificil, Visualizacao, setVisualizacao}) => {
+const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) => {
     const mistura1 = new Mistura([agua, areia]);
 
     misturaDificil.calcularTipo();
     misturaDificil.calcularClassificacao();
-    const [SelectAdicionar, setSelectAdicionar] = useState('Água')
-    const [SelectRemover, setSelectRemover] = useState('Água')
-    const [forcarRender, setForcarRender] = useState(0);
-    useEffect(() => {
-      }, [misturaDificil]);
-      useEffect(() => {
-      }, [SelectAdicionar]);
-      useEffect(() => {}, SelectComponente)
-    
-  return (
-    <div>        
-        
-            <ListaMisturaHorizontal h6='Mistura 01' mistura={misturaDificil}/>
-            <div className="conteinerLaboratorioOpcao">
-                
+    const itensNaMistura = misturaDificil.itens.map((item) => item.nome);
+    const componentesAdicionar = listaComponentes.filter((item) => !itensNaMistura.includes(item.nome))
+    const componentesRemover = listaComponentes.filter((item) => itensNaMistura.includes(item.nome))
 
-                
-            <div className="adicionarOuRemover">
-                <div className="conjuntoBotaoSelect">
-                    <button className='buttonPadrao' onClick={() => {
-                                    let componentesMistura = listaComponentes.find((value) => value.nome === SelectAdicionar);
+    const [SelectAdicionar, setSelectAdicionar] = useState(componentesAdicionar[0]?.nome || '')
+    const [SelectRemover, setSelectRemover] = useState(componentesRemover[0]?.nome || '')
+
+    function atualizarSelectAdicionareSelectRemover() {
+        const itensNaMistura = misturaDificil.itens.map((item) => item.nome);
+        const itensPossiveis = listaComponentes.map(c => c.nome);
+        setSelectAdicionar(itensPossiveis.find((item) => !itensNaMistura.includes(item)));
+        setSelectRemover(itensPossiveis.find((item) => itensNaMistura.includes(item)));
+    }
+
+    return (
+        <div>
+
+            <ListaMisturaHorizontal h6='Mistura 01' mistura={misturaDificil} />
+            <div className="conteinerLaboratorioOpcao">
+
+                <div className="adicionarOuRemover">
+                    {
+                        SelectAdicionar &&
+                        <div className="conjuntoBotaoSelect">
+                            <button className='buttonPadrao' onClick={() => {
+                                let componentesMistura = listaComponentes.find((value) => value.nome === SelectAdicionar);
+                                if (componentesMistura) {
                                     misturaDificil.adicionarComponenteMistura(componentesMistura);
-                                     setForcarRender((value) => value + 1);
-                                    
-                                    }} style={{backgroundColor: "#59D868", color: '#363636', width: '100%'}}>Adicionar Componente</button>
-                    <SelectComponente setSelect={setSelectAdicionar} id='selectAdicionarComponente' width='90%'/>
-                </div>
-                <div className="conjuntoBotaoSelect">
-                <button className='buttonPadrao' onClick={() => {
-                                    
+                                    atualizarSelectAdicionareSelectRemover();
+                                }
+
+                            }} style={{ backgroundColor: "#59D868", color: '#363636', width: '100%' }}>Adicionar Componente</button>
+                            <SelectComponente setSelect={setSelectAdicionar} id='selectAdicionarComponente' width='90%' listaComponentes={componentesAdicionar} />
+                        </div>
+                    }
+                    {
+                        SelectRemover &&
+                        <div className="conjuntoBotaoSelect">
+                            <button className='buttonPadrao' onClick={() => {
+                                if (SelectRemover) {
                                     misturaDificil.removerComponenteMistura(SelectRemover);
-                                    setForcarRender((value) => value + 1);
-                                    
-                                    }} style={{backgroundColor: "#F11313", color: '#FDFDFD', width: '100%'}}>Remover Componente</button>
-                    
-                    <SelectComponente setSelect={setSelectRemover} id='selectRemoverComponente' width='90%'/>
-                </div>
+                                    atualizarSelectAdicionareSelectRemover();
+                                }
+
+
+
+                            }} style={{ backgroundColor: "#F11313", color: '#FDFDFD', width: '100%' }}>Remover Componente</button>
+
+                            <SelectComponente setSelect={setSelectRemover} id='selectRemoverComponente' width='90%' listaComponentes={componentesRemover} />
+                        </div>
+                    }
                 </div>
             </div>
             <div className="resetarMisturaOuVoltar">
-            <button className='buttonPadrao' onClick={() => {
-                                    
-                                    misturaDificil.resetarMistura(agua, etanol);
-                                    setForcarRender((value) => value + 1);
-                                    }} style={{backgroundColor: "#2C6ED0", color: '#FDFDFD', width: '65%'}}>Resetar Mistura</button>
-                
                 <button className='buttonPadrao' onClick={() => {
-                       if (Visualizacao == true) {
-                          setVisualizacao(false)
-                       } else{
-                        setVisualizacao(true)
-                       }
-                      }} style={{backgroundColor: '#484D50', color: '#FDFDFD', width: '100%'}}>Voltar</button>
-                </div>
-            </div>
 
-        
-        
-  )
+                    misturaDificil.resetarMistura(agua, etanol);
+                    atualizarSelectAdicionareSelectRemover();
+                }} style={{ backgroundColor: "#2C6ED0", color: '#FDFDFD', width: '65%' }}>Resetar Mistura</button>
+
+                <button className='buttonPadrao' onClick={() => {
+                    if (Visualizacao == true) {
+                        setVisualizacao(false)
+                    } else {
+                        setVisualizacao(true)
+                    }
+                }} style={{ backgroundColor: '#484D50', color: '#FDFDFD', width: '100%' }}>Voltar</button>
+            </div>
+        </div>
+
+
+
+    )
 }
 
 export default LaboratorioOpção
