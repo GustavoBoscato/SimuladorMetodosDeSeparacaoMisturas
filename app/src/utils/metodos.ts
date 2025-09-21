@@ -47,7 +47,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
           const liquidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
           const liquidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
           const solidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
-          const solidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+          const solidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false || value.soluvelEmAgua === null);
           const componentesPolares = liquidosSoluveisEmAgua.concat(solidosSoluveisEmAgua);
           const componentesAPolares = liquidosNaoSoluveisEmAgua.concat(solidosNaoSoluveisEmAgua);
           const misturaPolar = new Mistura(componentesPolares);
@@ -80,8 +80,10 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
           const mediaDensidade : number = mediaDensidadeLiquidosVetor.reduce((n1, n2) => n1 + n2)/mediaDensidadeLiquidosVetor.length;
           const solidosNaoDissolvidos : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua !== liquidos[0].soluvelEmAgua && value.estadoFisico === 'S');
           const solidosDissolvidos : ComponenteMistura[] = mistura.itens.filter((value) => value.soluvelEmAgua === liquidos[0].soluvelEmAgua && value.estadoFisico === 'S');
+          console.log(solidosNaoDissolvidos)
+          
           const solidosSeparados : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade > mediaDensidade)
-          const solidosMenorDensidade : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade < mediaDensidade)
+          const solidosMenorDensidade : ComponenteMistura[] = solidosNaoDissolvidos.filter((value)=> value.densidade < mediaDensidade) 
           //Adiciona os elementos líquidos, sólidos dissolvidos, e sólidos não dissolvidos que possuem densidade menor que a média.
           const ComponentesRestantes : ComponenteMistura[] = liquidos.concat(solidosDissolvidos, solidosMenorDensidade)
           const Mistura1 = new Mistura(ComponentesRestantes);
@@ -91,7 +93,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
           const liquidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
           const liquidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
           const solidosSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === true);
-          const solidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false);
+          const solidosNaoSoluveisEmAgua = mistura.itens.filter((value) => value.soluvelEmAgua === false || value.soluvelEmAgua === null);
           const componentesPolares = liquidosSoluveisEmAgua.concat(solidosSoluveisEmAgua);
           const componentesAPolares = liquidosNaoSoluveisEmAgua.concat(solidosNaoSoluveisEmAgua);
           const misturaPolar = new Mistura(componentesPolares);
@@ -125,7 +127,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       let misturaSeparada = new Mistura([elementoMenorTemperaturaEbulicao])
       return [mistura, misturaSeparada];
       // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja homogênea S/L
-    } else return `A destilação simples apenas pode ser utilizada em misturas Homogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+    } else return `A destilação simples pode ser utilizada em misturas Homogêneas S/L e L/L sendo que, nesta última é necessário que a temperatura de ebulição seja significativamente diferente. Essa mistura é ${mistura.classificacao} ${mistura.tipo}`
     break;
   case 'destilação fracionada':
     //Condicionando o uso da destilação fracionada para as misturas homogênea e L/L.
@@ -178,7 +180,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       return [misturaLiquidaESolidosDissolvidos, misturaSolidosNaoDissolvidos]
             
           } // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja heterogênea S/L
-        } else return `A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo} ou não poderá conter líquidos de diferentes polaridades.`
+        } else return `A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}.`
       break;
     case 'peneiração':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
@@ -204,7 +206,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         const misturaRestante : Mistura = new Mistura(componentesSemFerro);
         const misturaFerro : Mistura = new Mistura(componenteFerro);
         return[misturaRestante, misturaFerro];
-      } else return `A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S e deve conter ferro em sua composição, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      } else return `A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S em que um dos componentes apresente propriedades magnéticas. Essa mistura é ${mistura.classificacao} ${mistura.tipo}`
       break;
      case 'dissolução fracionada':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S' && mistura.itens.some((componente) => componente.soluvelEmAgua === true ) &&
@@ -214,7 +216,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         const misturaSoluvel : Mistura = new Mistura(solidosSoluveisEmAgua)
         const misturaNaoSoluvel : Mistura = new Mistura(solidosNaoSoluveisEmAgua)
         return[misturaSoluvel, misturaNaoSoluvel];
-      } else return `A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}. Bem como não é possível separar sólidos de mesma polaridade.`
+      } else return `A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}.`
       break;
 }
 

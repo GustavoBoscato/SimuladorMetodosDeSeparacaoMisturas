@@ -8,7 +8,7 @@ const Navbar = () => {
       <ul className='ulNavbar'>
         <li><Link to="/"><img src={logoNavbar} id='logoNavbar'/></Link></li>
         <li id='navSimulador'><Link to="/">Simulador Dos Métodos de Separação</Link></li>
-        <li ><Link className='link' to='/'>Iniciar</Link></li>
+        <li ><Link className='link' to='/'>Página Inicial</Link></li>
         <li><Link className='link' to='/simular'>Simular</Link></li>
         <li><Link className='link' to='/listaComponente'>Lista dos Componentes</Link></li>
         

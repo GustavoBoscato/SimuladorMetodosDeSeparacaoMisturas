@@ -27,13 +27,13 @@ const Iniciar = () => {
               <h3>Métodos de Separação</h3>
               
               </div>
-              <InformacaoMistura img={decantacao} h3='Decantação' texto='Método utilizado para separar líquidos imiscíveis ou sólidos insóluveis em líquidos.' />
+              <InformacaoMistura img={decantacao} h3='Decantação' texto='processo de separação de misturas heterogêneas, baseado na diferença de densidade entre seus componentes. Permite separar sólidos de líquidos ou líquidos de líquidos, quando há uma significativa diferença de densidade entre eles, fazendo com que a substância mais densa se deposite no fundo do recipiente.' />
               <InformacaoMistura img={decantacaoFunilBromo} h3='Decantação com funil de bromo' texto='Método utilizado para separar líquidos imiscíveis.' />
               <InformacaoMistura img={filtracao} h3='Filtração' texto='Utilizada para separar sólidos insolúveis de líquidos ou gases.' />
-              <InformacaoMistura img={separacaoMagnetica} h3='Separação Magnética' texto='Usado para separar materiais magnéticos de substâncias não magnéticas.' />
+              <InformacaoMistura img={separacaoMagnetica} h3='Separação Magnética' texto='Utilizada para separar materiais com propriedades magnéticas de materiais que não as possuem, utilizando um campo magnético.' />
               <InformacaoMistura img={peneiracao} h3='Peneiração' texto='Método mecânico de separação de sólidos de diferentes tamanhos.' />
-              <InformacaoMistura img={destilacaoSimples} h3='Destilação Simples' texto='Separação de misturas homogêneas de líquidos com pontos de ebulição diferentes.' />
-              <InformacaoMistura img={destilacaoFracionada} h3='Destilação Fracionada' texto='Processo de separação de misturas de líquidos com pontos de ebulição próximos.' />
+              <InformacaoMistura img={destilacaoSimples} h3='Destilação Simples' texto='Processo de separação de misturas homogêneas, em que um líquido é separado de um sólido solúvel, ou de outro líquido com uma temperatura de ebulição significativamente diferente.' />
+              <InformacaoMistura img={destilacaoFracionada} h3='Destilação Fracionada' texto='Método utilizado para separar misturas homogêneas de líquidos, baseado na diferença de suas temperaturas de ebulição.' />
               <InformacaoMistura img={centrifugacao} h3='Centrifugação' texto='Processo de separação de partículas de diferentes densidades por meio de rotação.' />
               <InformacaoMistura img={dissolucaoFracionada} h3='Dissolução Fracionada' texto='Separação de misturas sólidas por meio da dissolução preferencial de um dos componentes.' />
             </div>
