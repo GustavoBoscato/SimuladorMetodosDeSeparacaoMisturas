@@ -6,16 +6,18 @@ interface SelectComponenteProps {
     id: string;
     width: string;
     setSelect : Function;
+    Select: string
     listaComponentes : Array<ComponenteMistura>;
 }
 
-const SelectComponente: React.FC<SelectComponenteProps> = ({ id, width, setSelect, listaComponentes }) => {
+const SelectComponente: React.FC<SelectComponenteProps> = ({ id, width, setSelect, listaComponentes, Select }) => {
     return (
-        <select onChange={(e) => {
+        <select value={Select} onChange={(e) => {
             setSelect(e.target.value);
         }} style={{width: width}} className='selectComponentes' name="selectComponente" id={id}>
             {listaComponentes.map((value, index) => (
                 <option key={index} value={value.nome}>{value.nome}</option>
+
             ))}
         </select>
     );
