@@ -16,7 +16,7 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
     const itensNaMistura = misturaDificil.itens.map((item) => item.nome);
 
     const [componentesAdicionar, setComponentesAdicionar] = useState(listaComponentes.filter((item) => !itensNaMistura.includes(item.nome)))
-    const [componentesRemover, setComponentesRemover] = useState(!listaComponentes.filter((item) => !itensNaMistura.includes(item.nome)))
+    const [componentesRemover, setComponentesRemover] = useState(listaComponentes.filter((item) => itensNaMistura.includes(item.nome)))
     const [SelectAdicionar, setSelectAdicionar] = useState(componentesAdicionar[0]?.nome || '')
     const [SelectRemover, setSelectRemover] = useState(componentesRemover[0]?.nome || '')
 
@@ -29,8 +29,10 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
         setComponentesAdicionar(novosAdicionar);
         setComponentesRemover(novosRemover);
         
-        if (novosAdicionar.length != 0 && novosRemover != 0) {
-            setSelectAdicionar(novosAdicionar[0].nome || '');
+        if (novosAdicionar.length != 0) {
+             setSelectAdicionar(novosAdicionar[0].nome || '');
+        }
+        if (novosRemover.length != 0) {
             setSelectRemover(novosRemover[0].nome || '');    
         }
         
@@ -60,7 +62,7 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
                         </div>
                     }
                     {
-                        componentesRemover != 0 &&
+                        componentesRemover.length != 0 &&
                         <div className="conjuntoBotaoSelect">
                             <button className='buttonPadrao' onClick={() => {
                                 if (SelectRemover) {
@@ -87,8 +89,15 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
                 <button className='buttonPadrao' onClick={() => {
                     if (Visualizacao == true) {
                         setVisualizacao(false)
+                        atualizarSelectAdicionareSelectRemover();
+                        setSelectRemover(componentesRemover[0])
                     } else {
                         setVisualizacao(true)
+                        atualizarSelectAdicionareSelectRemover();
+                        console.log(componentesRemover)
+                        if (SelectRemover) {
+                            
+                        }
                     }
                 }} style={{ backgroundColor: '#484D50', color: '#FDFDFD', width: '100%' }}>Voltar</button>
             </div>
