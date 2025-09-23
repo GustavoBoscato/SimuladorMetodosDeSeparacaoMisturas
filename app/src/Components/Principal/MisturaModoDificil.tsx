@@ -63,7 +63,7 @@ const MisturaModoDificil : React.FC<MisturaDificilProps> = ({mistura, index, set
                       }
                       
                       }} style={{backgroundColor: "#000", color: '#FDFDFD', width: ''}}>Separar</button>
-                      <SelectMetodos id='metodosModoLivre' setMetodoSeparacao={setMetodoSeparacao}/>
+                      <SelectMetodos metodoSeparacao={MetodoSeparacao} id='metodosModoLivre' setMetodoSeparacao={setMetodoSeparacao}/>
                         </div>
                       )}
                       

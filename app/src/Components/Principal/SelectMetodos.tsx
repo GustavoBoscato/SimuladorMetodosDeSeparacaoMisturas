@@ -1,16 +1,17 @@
 import React from 'react';
 import './SelectMetodos.css';
-import { metodoSeparacaoArray } from '../../utils/metodos';
+import { metodoSeparacao, metodoSeparacaoArray } from '../../utils/metodos';
 interface SelectMetodoProps {
     id: string;
     setMetodoSeparacao : Function;
+    metodoSeparacao : metodoSeparacao ;
 }
 
 
-const SelectMetodos: React.FC<SelectMetodoProps> = ({ id, setMetodoSeparacao }) => {
+const SelectMetodos: React.FC<SelectMetodoProps> = ({ id, setMetodoSeparacao, metodoSeparacao }) => {
     
     return (
-        <select className='selectMetodos' name="selectComponente" id={id} onChange={(e) => {
+        <select className='selectMetodos' name="selectComponente" value={metodoSeparacao} id={id} onChange={(e) => {
             setMetodoSeparacao(e.target.value)
             console.log(e.target.value)
         }}>
