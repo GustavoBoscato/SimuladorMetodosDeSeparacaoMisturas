@@ -21,16 +21,19 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
     const [SelectRemover, setSelectRemover] = useState(componentesRemover[0]?.nome || '')
 
     function atualizarSelectAdicionareSelectRemover() {
-    const itensNaMistura = misturaDificil.itens.map(item => item.nome);
+        const itensNaMistura = misturaDificil.itens.map(item => item.nome);
 
-    const novosAdicionar = listaComponentes.filter(c => !itensNaMistura.includes(c.nome));
-    const novosRemover = listaComponentes.filter(c => itensNaMistura.includes(c.nome));
+        const novosAdicionar = listaComponentes.filter(c => !itensNaMistura.includes(c.nome));
+        const novosRemover = listaComponentes.filter(c => itensNaMistura.includes(c.nome));
 
-    setComponentesAdicionar(novosAdicionar);
-    setComponentesRemover(novosRemover);
-
-    setSelectAdicionar(novosAdicionar[0].nome || '');
-    setSelectRemover(novosRemover[0].nome || '');
+        setComponentesAdicionar(novosAdicionar);
+        setComponentesRemover(novosRemover);
+        
+        if (novosAdicionar.length != 0 && novosRemover != 0) {
+            setSelectAdicionar(novosAdicionar[0].nome || '');
+            setSelectRemover(novosRemover[0].nome || '');    
+        }
+        
 }
 
     return (
@@ -41,12 +44,11 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
 
                 <div className="adicionarOuRemover">
                     {
-                        SelectAdicionar &&
+                        componentesAdicionar.length !== 0 &&
                         <div className="conjuntoBotaoSelect">
                             <button className='buttonPadrao' onClick={() => {
                                 
                                 let componentesMistura = listaComponentes.find((value) => value.nome === SelectAdicionar);
-                                console.log(componentesMistura)
                                 if (componentesMistura) {
                                     misturaDificil.adicionarComponenteMistura(componentesMistura);
                                     atualizarSelectAdicionareSelectRemover();
@@ -58,7 +60,7 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
                         </div>
                     }
                     {
-                        SelectRemover &&
+                        componentesRemover != 0 &&
                         <div className="conjuntoBotaoSelect">
                             <button className='buttonPadrao' onClick={() => {
                                 if (SelectRemover) {
