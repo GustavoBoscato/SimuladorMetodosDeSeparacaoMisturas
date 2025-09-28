@@ -19,6 +19,7 @@ import ModoFacil from './pages/Home/ModoFacil';
 import { listaMisturasModoFacil } from './data/dataMisturas';
 import { useState, useEffect } from 'react';
 import Laboratorio from './pages/Home/Laboratorio';
+import Contatos from './pages/Home/Contatos';
 
 function App() {
   
@@ -60,10 +61,13 @@ function App() {
         <Route path="/simular" element={<Modos titulo='Modo Fácil' texto='Utilize 
         das misturas cadastradas no sistema para realizar experimentos. Este modo
          prioriza a objetividade. Recomendado para iniciantes' 
+         
          titulo2='Modo Livre' texto2='Crie sua própria mistura, 
          adicione componentes e faça experimentos! Este modo possui todas as ferramentas liberadas.'/>} />
+        <Route path="/contatos" element={<Contatos/>} />
         <Route path="/modoFacil" element={< MisturasCadastradas selecionarMisturaModoFacil={selecionarMisturaModoFacil}/>} />
         <Route path="/laboratorioModoFacil" element={<ModoFacil setMisturaFacil={setMisturaFacil} MisturaFacil={MisturaFacil}/>} />
+        
       </Routes>
       
     </BrowserRouter>

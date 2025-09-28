@@ -1,0 +1,16 @@
+.sobreProjeto{
+    width: 50%;
+    
+}
+.sobreProjeto p, h2{
+    
+    margin-left: 100px ;
+    
+}
+.imgContato{
+    width: 50%;
+}
+.sobreProjetosEImg{
+    width: 100%;
+    display: flex;
+}

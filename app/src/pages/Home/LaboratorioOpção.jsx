@@ -99,7 +99,7 @@ const LaboratorioOpção = ({ misturaDificil, Visualizacao, setVisualizacao }) =
                             
                         }
                     }
-                }} style={{ backgroundColor: '#484D50', color: '#FDFDFD', width: '100%' }}>Voltar</button>
+                }} style={{ backgroundColor: '#484D50', color: '#FDFDFD', width: '100%' }}>Ir para separação</button>
             </div>
         </div>
 
