@@ -15,6 +15,8 @@ import { metodoSeparacao } from '../../utils/metodos';
 import { ComponenteMistura } from '../../data/ComponenteMistura';
 import { useEffect } from 'react';
 import LaboratorioOpção from '../../pages/Home/LaboratorioOpção';
+import Modal from '../../pages/Home/Modal';
+import { isString } from 'util';
   type MisturaDificilProps = {
   mistura: Mistura;
   index : string;
@@ -24,7 +26,8 @@ import LaboratorioOpção from '../../pages/Home/LaboratorioOpção';
 const MisturaModoDificil : React.FC<MisturaDificilProps> = ({mistura, index, setTodasMisturas, TodasMisturas}) => {
   const [MetodoSeparacao, setMetodoSeparacao]  = useState<metodoSeparacao>('centrifugação');
   const [Visualizacao, setVisualizacao] = useState<boolean>(true);
-  
+  const [isOpen, setIsOpen] = useState(false);
+  const [textoModal, setTextoModal] = useState<string>('');
       useEffect(() => {
           mistura.calcularTipo();
           mistura.calcularClassificacao();
@@ -34,14 +37,16 @@ const MisturaModoDificil : React.FC<MisturaDificilProps> = ({mistura, index, set
   
         if (Visualizacao == true) {
         return (
+    
     <div className='MisturaModoDificil'>
-     
+    
     <ListaMistura mistura={mistura} h6={`Mistura ${index}`}/>
-
-                   
+    <Modal setIsOpen={setIsOpen} isOpen={isOpen} texto={textoModal} ></Modal>      
+                    {!isOpen && (
                       <div className="botoesDificil">
                       { mistura.itens.length > 1 && (
                         <div>
+                          
                           <button className='buttonPadrao' onClick={() => {
                       let misturaNova = (separarMistura(MetodoSeparacao, mistura))
                       if (misturaNova) {
@@ -56,8 +61,9 @@ const MisturaModoDificil : React.FC<MisturaDificilProps> = ({mistura, index, set
                             console.log(TodasMisturas);
                             
                           }
-                        } else {
-                          alert(misturaNova);
+                        } else if(typeof misturaNova == 'string') {
+                          setTextoModal(misturaNova)
+                          setIsOpen(!isOpen)
                         }
                         
                       }
@@ -75,6 +81,9 @@ const MisturaModoDificil : React.FC<MisturaDificilProps> = ({mistura, index, set
                        }
                       }} style={{backgroundColor: '#484D50', color: '#FDFDFD', width: '100%'}}>Opções</button>  
                         </div>                  
+                    )
+                    }
+                      
                       
      
      
