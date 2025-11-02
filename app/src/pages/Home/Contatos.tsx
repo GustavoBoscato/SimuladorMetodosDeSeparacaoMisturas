@@ -1,21 +1,23 @@
 import React from 'react'
 import "./Contatos.css"
 import imagemSimepe from '../../img/ImagemSimepe2.jpeg'
+import imagemSimepe2 from '../../img/ImagemSimepeComRicardo.jpeg'
 const Contatos = () => {
   return (
     <div className='contatosPrincipal'>
       <div className="sobreProjetosEImg">
         <div className="sobreProjeto">
         <h2>Nossa História</h2>
-        <p>Este projeto se iniciou devido a uma premiação na OMQ 2023 que resultou em uma bolsa de iniciação científica da UFMG pelo CNPQ.</p>
-        <p>Inicialmente, o projeto era para ser apenas de química, mas pelo fato do bolsista ser estudante do curso técnico em Desenvolvimento de Sistemas, surgiu a ideia de integrar um projeto de química com a prática de Desenvolvimento de Sistemas, dessa forma surgindo a ideia de criar uma aplicação que integre os dois.</p>
-        <p>Após a decisão dessa união de áreas de conhecimento, tivemos diversas ideias, como fazer um blog de química, um site de experimentos, uma aplicação para aprender a tabela periódica, ou até mesmo utilizar arduíno para automatizar algum processo químico, entretanto tivemos a ideia de fazer um simulador, pesquisamos por diversos artigos científicos e ferramentas e chegamos a conclusão que o melhor a se fazer era um Simulador dos Métodos de Separação, já que diversos alunos do curso técnico em metalurgia do IFSUDESTEMG apresentavam dificuldades no aprendizado do conteúdo, além disso não existia no mercado ferramentas viáveis, e as que poderiam ser utilizadas eram inviáveis devido a barreiras linguísticas e econômicas.</p>
-        <p>Logo depois dessas etapas, estudamos os métodos de separação de misturas, e as ferramentas que seriam utilizadas para a programação. React e Typescript, fizemos um modelo do sistema para definir o escopo da aplicação e começamos a programar, tivemos diversas dificuldades para definir a lógica por trás dos métodos de separação, pois os métodos apresentam diferenças significativas entre si, para isso identificamos padrões em cada componente para que a simulação se torne o mais real possível. </p>
-        <p>Como resultado de meses de esforço, conseguimos desenvolver essa aplicação na qual você está utilizando agora, caso queira nos ajudar, nos envie feedbacks com sugestões de melhorias e correções de bugs.</p>
+        <p>Este projeto se iniciou devido a uma premiação na Olimpíada Mineira de Química 2023 que resultou em uma bolsa de iniciação científica do CNPQ pela UFMG. O projeto foi desenvolvido no IF Sudeste MG, Campus Juiz de Fora.</p>
+        <p>Pelo fato dos estudantes (um bolsista e um voluntário) envolvidos no projeto serem do curso técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio, surgiu a ideia de desenvolver um projeto integrando Química com algumas disciplinas do curso Desenvolvimento de Sistemas.</p>
+        <p>Dentre várias ideias de projetos, chegamos à elaboração de um Simulador de Métodos de Separação de Misturas, devido a dificuldade de alunos em relação a este conteúdo. Além disso, as ferramentas existentes até então no mercado podem apresentar barreiras linguísticas e/ou econômicas.</p>
+        <p>Para desenvolvimento desta aplicação web estudamos os métodos de separação de misturas, e as ferramentas que seriam utilizadas para a programação (React e Typescript), fizemos um modelo do sistema para definir o escopo da aplicação e começamos a programar. Tivemos diversas dificuldades para definir a lógica por trás dos métodos de separação, pois os métodos apresentam diferenças significativas entre si, para isso identificamos padrões em cada componente para que a simulação se torne o mais real possível.</p>
+        <p>Como resultado de meses de esforço, conseguimos desenvolver essa aplicação na qual você está utilizando agora. Caso tenha alguma sugestão e/ou crítica para melhorias no simulador, nos envie, por favor! Seu feedback é muito importante para alcançarmos nosso objetivo de facilitar o processo de ensino/aprendizagem em relação aos principais métodos de separação de misturas abordados no conteúdo de Química.</p>
         
         </div>
         <div className="imgContato">
-          <img src={imagemSimepe} alt="" />
+          <img src={imagemSimepe}/>
+          <img className='imgSimepe2' src={imagemSimepe2}/>
       </div>
       </div>
       

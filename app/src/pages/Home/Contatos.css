@@ -7,7 +7,12 @@
     
 }
 .imgContato{
-    width: 50%;
+    width: 45%;
+    flex-direction: column;
+}
+.imgSimepe2{
+    height: 79%;
+    width: 55%;
 }
 .sobreProjetosEImg{
     width: 100%;

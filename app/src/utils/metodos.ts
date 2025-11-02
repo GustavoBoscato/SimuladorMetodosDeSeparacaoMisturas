@@ -56,7 +56,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         }
 
        //Retorna uma mensagem de erro especificando o que o usuário fez de errado.
-    } else return `A decantação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+    } else return `O método que você selecionou não é adequado para esta mistura. A decantação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
     break;
   case 'decantação com funil de bromo':
     //Condicionando o uso da decantação com funil de bromo para as misturas heterogênea e L/L.
@@ -68,7 +68,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
           return[misturaPolar, misturaAPolar];
 
 
-    } else return `A decantação com funil de bromo apenas pode ser utilizada em misturas Heterogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+    } else return `O método que você selecionou não é adequado para esta mistura. A decantação com funil de bromo apenas pode ser utilizada em misturas Heterogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
     break;
   case 'centrifugação':
      //Condicionando o uso da centrifugação para as misturas heterogênea e S/L.
@@ -102,7 +102,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         }
      
   } 
-  else return `A centrifugação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+  else return `O método que você selecionou não é adequado para esta mistura. A centrifugação apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
   break;
   case 'destilação simples':
     if (mistura.tipo === 'S/L' && mistura.classificacao === 'Homogenea') {
@@ -127,7 +127,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       let misturaSeparada = new Mistura([elementoMenorTemperaturaEbulicao])
       return [mistura, misturaSeparada];
       // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja homogênea S/L
-    } else return `A destilação simples pode ser utilizada em misturas Homogêneas S/L e L/L sendo que, nesta última é necessário que a temperatura de ebulição seja significativamente diferente. Essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+    } else return `O método que você selecionou não é adequado para esta mistura. A destilação simples pode ser utilizada em misturas Homogêneas S/L e L/L sendo que, nesta última é necessário que a temperatura de ebulição seja significativamente diferente. Essa mistura é ${mistura.classificacao} ${mistura.tipo}`
     break;
   case 'destilação fracionada':
     //Condicionando o uso da destilação fracionada para as misturas homogênea e L/L.
@@ -155,7 +155,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja homogênea L/L
     } else if (mistura.itens.length < 2){
       return  `Impossível separar uma mistura com apenas um componente.`
-    } else return `A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}` 
+    } else return `O método que você selecionou não é adequado para esta mistura. A destilação fracionada apenas pode ser utilizada em misturas Homogêneas L/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}` 
      break;
   case  'filtração':
     //Condicionando o uso da filtração para as misturas heterogênea e S/L.
@@ -180,7 +180,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
       return [misturaLiquidaESolidosDissolvidos, misturaSolidosNaoDissolvidos]
             
           } // Mensagem de erro caso o usuário tente fazer a separação com uma mistura que não seja heterogênea S/L
-        } else return `A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}.`
+        } else return `O método que você selecionou não é adequado para esta mistura. A filtração apenas pode ser utilizada em misturas Heterogêneas S/L, essa mistura é ${mistura.classificacao} ${mistura.tipo}.`
       break;
     case 'peneiração':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S'){
@@ -196,7 +196,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         const novaMistura : Mistura = new Mistura([menorComponente])
         const MisturaRestante : Mistura = new Mistura(aux.filter((value) => value !== menorComponente))
         return [novaMistura, MisturaRestante]
-      } else return `A peneiração apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      } else return `O método que você selecionou não é adequado para esta mistura. A peneiração apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}`
       break;
      case 'separação magnética':
       const contemFerro = mistura.itens.some((value) => value.nome === 'Ferro')
@@ -206,7 +206,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         const misturaRestante : Mistura = new Mistura(componentesSemFerro);
         const misturaFerro : Mistura = new Mistura(componenteFerro);
         return[misturaRestante, misturaFerro];
-      } else return `A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S em que um dos componentes apresente propriedades magnéticas. Essa mistura é ${mistura.classificacao} ${mistura.tipo}`
+      } else return `O método que você selecionou não é adequado para esta mistura. A separação magnética apenas pode ser utilizada em misturas Heterogêneas S/S em que um dos componentes apresente propriedades magnéticas. Essa mistura é ${mistura.classificacao} ${mistura.tipo}`
       break;
      case 'dissolução fracionada':
       if (mistura.classificacao === 'Heterogenea' && mistura.tipo === 'S/S' && mistura.itens.some((componente) => componente.soluvelEmAgua === true ) &&
@@ -216,7 +216,7 @@ export function separarMistura(metodo: metodoSeparacao, mistura : Mistura) : Arr
         const misturaSoluvel : Mistura = new Mistura(solidosSoluveisEmAgua)
         const misturaNaoSoluvel : Mistura = new Mistura(solidosNaoSoluveisEmAgua)
         return[misturaSoluvel, misturaNaoSoluvel];
-      } else return `A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}.`
+      } else return `O método que você selecionou não é adequado para esta mistura. A dissolução fracionada apenas pode ser utilizada em misturas Heterogêneas S/S, essa mistura é ${mistura.classificacao} ${mistura.tipo}.`
       break;
 }
 
