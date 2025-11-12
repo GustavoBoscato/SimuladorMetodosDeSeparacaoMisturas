@@ -1,0 +1,28 @@
+.sobreProjeto{
+    width: 50%;
+    
+}
+.sobreProjeto p, h2{
+    margin-left: 100px ;
+    
+}
+.imgContato{
+    width: 55%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.imgSimepe{
+    height: 50%;
+    width: 50%;
+}
+.imgSimepe2{
+    height: 50%;
+    width: 50%;
+}
+.sobreProjetosEImg{
+    width: 100%;
+    display: flex;
+}

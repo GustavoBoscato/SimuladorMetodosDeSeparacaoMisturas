@@ -1,0 +1,23 @@
+.ComponenteTabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.ComponenteTabela th, .ComponenteTabela td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000; 
+}
+
+.ComponenteTabela th {
+  background-color: #ffffff; 
+  color: rgb(58, 53, 53);
+}
+
+.ComponenteTabela td {
+  color: #353a3f; 
+}

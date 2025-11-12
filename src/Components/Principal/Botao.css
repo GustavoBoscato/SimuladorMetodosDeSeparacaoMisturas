@@ -1,0 +1,12 @@
+.buttonPadrao{
+    padding: 15px 25px;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    width: 20%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    
+}

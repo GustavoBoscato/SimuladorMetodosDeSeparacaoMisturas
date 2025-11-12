@@ -1,0 +1,12 @@
+.selectComponentes {
+    
+  background-color: white;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  padding: 5px 30px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  width: 15%;
+}
