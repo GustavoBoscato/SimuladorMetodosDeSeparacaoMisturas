@@ -27,7 +27,7 @@ const Iniciar = () => {
               <h3>Métodos de Separação</h3>
               
               </div>
-              <InformacaoMistura img={decantacao} h3='Decantação' texto='processo de separação de misturas heterogêneas, baseado na diferença de densidade entre seus componentes. Permite separar sólidos de líquidos ou líquidos de líquidos, quando há uma significativa diferença de densidade entre eles, fazendo com que a substância mais densa se deposite no fundo do recipiente.' />
+              <InformacaoMistura img={decantacao} h3='Decantação' texto='Processo de separação de misturas heterogêneas, baseado na diferença de densidade entre seus componentes. Permite separar sólidos de líquidos ou líquidos de líquidos, quando há uma significativa diferença de densidade entre eles, fazendo com que a substância mais densa se deposite no fundo do recipiente.' />
               <InformacaoMistura img={decantacaoFunilBromo} h3='Decantação com funil de bromo' texto='Método utilizado para separar líquidos imiscíveis.' />
               <InformacaoMistura img={filtracao} h3='Filtração' texto='Utilizada para separar sólidos insolúveis de líquidos ou gases.' />
               <InformacaoMistura img={separacaoMagnetica} h3='Separação Magnética' texto='Utilizada para separar materiais com propriedades magnéticas de materiais que não as possuem, utilizando um campo magnético.' />

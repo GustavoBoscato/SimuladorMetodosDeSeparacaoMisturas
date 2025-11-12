@@ -7,12 +7,20 @@
     
 }
 .imgContato{
-    width: 45%;
+    width: 55%;
     flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.imgSimepe{
+    height: 50%;
+    width: 50%;
 }
 .imgSimepe2{
-    height: 79%;
-    width: 55%;
+    height: 50%;
+    width: 50%;
 }
 .sobreProjetosEImg{
     width: 100%;

@@ -19,10 +19,11 @@ div.img{
 p.paragrafoMistura {
     margin-top: 10px;
     width: 70%;
-    
+    text-align: right;
 }
 h3.h3Mistura{
     margin-top: 10px;
+    
     color: 	#0A192F;
 }
 .textoMistura{

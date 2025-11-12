@@ -16,7 +16,7 @@ const Contatos = () => {
         
         </div>
         <div className="imgContato">
-          <img src={imagemSimepe}/>
+          <img className='imgSimepe' src={imagemSimepe}/>
           <img className='imgSimepe2' src={imagemSimepe2}/>
       </div>
       </div>
